@@ -1,0 +1,4 @@
+FinkiManEscape
+==============
+
+Igra za seminarska
