@@ -8,7 +8,7 @@ namespace FinkiManEscape
 {
     class Figura
     {
-        public int Lenth { get; set; }//kolko kocke da zafati
+        public int Length { get; set; }//kolko kocke da zafati
 
         public int PositionX { get; set; }//pozicija kude pocnue figura(kolona)
         public int PositionY { set; get; }//pozicija kude pocnue figura(red)
@@ -25,7 +25,7 @@ namespace FinkiManEscape
 
         public Figura(int lenth, int positionX, int positionY, int orientation)
         {
-            Lenth = lenth;
+            Length = lenth;
             PositionX = positionX;
             PositionY = positionY;
             Orinetation = orientation;
