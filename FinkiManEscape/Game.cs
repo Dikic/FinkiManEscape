@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace FinkiManEscape
 {
@@ -14,6 +15,8 @@ namespace FinkiManEscape
 
         public static readonly int squareDimension = 100;//pikseli za duzinu i sirinu na ednu kocku
 
+        public int CurrentActive { set; get; }//momentalno aktivna figura za pomestuvanje
+
         public Game(Figura[] figuri)
         {
             for (int i = 0; i < figuri.Length; i++)
@@ -21,6 +24,7 @@ namespace FinkiManEscape
                 this.figuri[i] = figuri[i];
             }
             initializeGrid();
+            CurrentActive = EMPTYSQUARE;
         }
 
         public void initializeGrid()
@@ -30,7 +34,84 @@ namespace FinkiManEscape
             {
                 Grid[i] = new int[6];
             }
-            //potpuni ga Grid prazni puni kocke...
+            //potpuni ga Grid prazni, puni kocke...
+            updateGrid();
         }
+
+        public void updateGrid()
+        {
+            for (int i = 0; i < Grid.Length; i++)//inicijaliziraj na prazni
+            {
+                for (int j = 0; j < Grid[i].Length; j++)
+                {
+                    Grid[i][j] = EMPTYSQUARE;
+                }
+            }
+
+            for (int j = 0; j < figuri.Length; j++)//projdi gi site figuri
+            {
+                for (int i = 0; i < figuri[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
+                {
+                    if (figuri[j].Orinetation == Figura.PORTRAIT)
+                    {
+                        Grid[figuri[j].PositionX][figuri[j].PositionY + i] = j;//ako e portrait se oznacuvaat po y-oska (positionX i positionY se pocetni kocki)
+                    }
+                    else
+                    {
+                        Grid[figuri[j].PositionX + i][figuri[j].PositionY] = j;
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// Priprema za move t.e. postavuvanje na vistinskite PositionX i PositionY
+        /// </summary>
+        /// <param name="x">x-koordinata na poleto</param>
+        /// <param name="y">y koordinata</param>
+        public void prepareMove(int x, int y)
+        {
+            for (int i = 0; i < Grid.Length; i++)
+            {
+                bool isBreak = false;
+                for (int j = 0; j < Grid[i].Length; j++)
+                {
+                    if (x > i * squareDimension && x < (i + 1) * squareDimension)
+                    {
+                        if (y > j * squareDimension && y < (j + 1) * squareDimension)
+                        {
+                            CurrentActive = Grid[i][j];
+                            isBreak = true;
+                            break;
+                        }
+                    }
+                    if (isBreak) break;
+                }
+            }
+
+            figuri[CurrentActive].PositionX *= squareDimension;
+            figuri[CurrentActive].PositionY *= squareDimension;
+
+        }
+        /// <summary>
+        /// Zavrsuvanje na move obavezno pri mouse up
+        /// </summary>
+        public void finisMove()
+        {
+            figuri[CurrentActive].adjust();
+            figuri[CurrentActive].PositionX /= squareDimension;
+            figuri[CurrentActive].PositionY /= squareDimension;
+            CurrentActive = EMPTYSQUARE;
+            updateGrid();
+        }
+        public bool moveCurrent(int X, int Y)
+        {
+            if (CurrentActive != EMPTYSQUARE)
+            {
+                if (!figuri[CurrentActive].move(X, Y)) return false;
+                //da se dopuni i provadjanje niz svi draw metode ss for
+            }
+            return true;
+        }
+
     }
 }

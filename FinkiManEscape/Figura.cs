@@ -14,14 +14,14 @@ namespace FinkiManEscape
         public int PositionY { set; get; }//pozicija kude pocnue figura(red)
 
         public int Orinetation { get; set; }//ovoj e jasno :P
-        static readonly int PORTRAIT = 0;
-        static readonly int LANDSCAPE = 1;
+        public static readonly int PORTRAIT = 0;
+        public static readonly int LANDSCAPE = 1;
         
         public int[] Bounds { set; get; }//Slobodni kocke bounds[0]:UP bounds[1]:DOWN...
-        static readonly int BOUNDUP = 0;
-        static readonly int BOUNDDOWN = 1;
-        static readonly int BOUNDLEFT = 2;
-        static readonly int BOUNDRIGHT = 3;
+        public static readonly int BOUNDUP = 0;
+        public static readonly int BOUNDDOWN = 1;
+        public static readonly int BOUNDLEFT = 2;
+        public static readonly int BOUNDRIGHT = 3;
 
         public Figura(int lenth, int positionX, int positionY, int orientation)
         {
@@ -57,12 +57,20 @@ namespace FinkiManEscape
 
         public void adjust()
         {
-            //pri mouseUp treba da gu namesti figuru na mesto
+            //pri mouseUp treba da gu namesti figuru na mesto 
         }
 
         public void draw(Graphics g)
         {
             //iscrtaj figuru
+            if (Orinetation == PORTRAIT)
+            {
+
+            }
+            else
+            {
+
+            }
         }
        
     }
