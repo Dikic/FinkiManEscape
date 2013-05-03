@@ -32,17 +32,25 @@ namespace FinkiManEscape
             Bounds = new int[4];
         }
 
-        public bool move(int moveLenth)
+        public bool move(int X,int Y)
         {
             if (Orinetation == PORTRAIT)
             {
                 //ispitaj dali e do kraj
-                PositionY += moveLenth;
+                if (PositionY + Y > Bounds[BOUNDDOWN] * Game.squareDimension || PositionY + Y < Bounds[BOUNDUP] * Game.squareDimension)
+                {
+                    return false; //nadvor od granici
+                }
+                PositionY += Y;
             }
             else
             {
                 //ispitaj granice
-                PositionX += moveLenth;
+                if (PositionX + X > Bounds[BOUNDRIGHT] * Game.squareDimension || PositionY + Y < Bounds[BOUNDLEFT] * Game.squareDimension)
+                {
+                    return false; //nadvor od granici
+                }
+                PositionX += X;
             }
             return true;
         }
