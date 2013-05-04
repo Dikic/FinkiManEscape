@@ -17,10 +17,12 @@ namespace FinkiManEscape
             InitializeComponent();           
             Figura f1=new Figura(2, 0, 0, Figura.PORTRAIT);
             Figura f2=new Figura(3, 2, 1, Figura.LANDSCAPE);
-            List<Figura> figuri = new List<Figura>();
-            figuri.Add(f1);
-            figuri.Add(f2);
-            game = new Game(figuri);            
+            Figura[] f = new Figura[2];
+            f[0] = f1;
+            f[1] = f2;
+            game = new Game(f);
+            
+                        
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
