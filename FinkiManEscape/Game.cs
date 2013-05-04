@@ -8,21 +8,29 @@ namespace FinkiManEscape
 {
     class Game
     {
-        private Figura[] figuri;
-
+        private List<Figura> figuri;
+        
         public int[][] Grid;//koja kocka e slobodna a koja ne 6x6
         public static readonly int EMPTYSQUARE = -1;//flag za praznu kocku a drugi ke se oznacuev po redan broj od objekt sto dovadjav 1 za figura[1], 2 za figura[2]...
 
         public static readonly int squareDimension = 100;//pikseli za duzinu i sirinu na ednu kocku
 
         public int CurrentActive { set; get; }//momentalno aktivna figura za pomestuvanje
-
-        public Game(Figura[] figuri)
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="figuri">niza od objekti od figuri</param>
+        public Game(List<Figura> figurii)
         {
-            for (int i = 0; i < figuri.Length; i++)
-            {
-                this.figuri[i] = figuri[i];
-            }
+                foreach (Figura f in figurii)
+                {
+                    this.figuri.Add(f); //isto javlja pa 
+                }
+            
+           // for (int i = 0; i < figuri.Count; i++)
+           // {
+            //    this.figuri[i] = figuri[i];
+            //}
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
         }
@@ -48,7 +56,7 @@ namespace FinkiManEscape
                 }
             }
 
-            for (int j = 0; j < figuri.Length; j++)//projdi gi site figuri
+            for (int j = 0; j < figuri.Count; j++)//projdi gi site figuri
             {
                 for (int i = 0; i < figuri[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
                 {
@@ -95,7 +103,7 @@ namespace FinkiManEscape
         /// <summary>
         /// Zavrsuvanje na move obavezno pri mouse up
         /// </summary>
-        public void finisMove()
+        public void finishMove()
         {
             figuri[CurrentActive].adjust();
             figuri[CurrentActive].PositionX /= squareDimension;
@@ -113,5 +121,12 @@ namespace FinkiManEscape
             return true;
         }
 
+        public void draw(Graphics g)
+        {
+            foreach (Figura f in figuri)
+            {
+                f.draw(g);
+            }
+        }
     }
 }

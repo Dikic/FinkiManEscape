@@ -14,9 +14,13 @@ namespace FinkiManEscape
         Game game;
         public Form1()
         {
-            InitializeComponent();
-           
-            
+            InitializeComponent();           
+            Figura f1=new Figura(2, 0, 0, Figura.PORTRAIT);
+            Figura f2=new Figura(3, 2, 1, Figura.LANDSCAPE);
+            List<Figura> figuri = new List<Figura>();
+            figuri.Add(f1);
+            figuri.Add(f2);
+            game = new Game(figuri);            
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -35,7 +39,12 @@ namespace FinkiManEscape
 
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
-            game.finisMove();
+            game.finishMove();
+        }
+
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            game.draw(e.Graphics);
         }
 
 

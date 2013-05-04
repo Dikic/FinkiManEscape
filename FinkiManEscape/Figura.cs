@@ -8,10 +8,15 @@ namespace FinkiManEscape
 {
     class Figura
     {
+        private Rectangle rec;
+        public Brush brush;
         public int Length { get; set; }//kolko kocke da zafati
 
         public int PositionX { get; set; }//pozicija kude pocnue figura(kolona)
         public int PositionY { set; get; }//pozicija kude pocnue figura(red)
+
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public int Orinetation { get; set; }//ovoj e jasno :P
         public static readonly int PORTRAIT = 0;
@@ -20,19 +25,34 @@ namespace FinkiManEscape
         public int[] Bounds { set; get; }//Slobodni kocke bounds[0]:UP bounds[1]:DOWN...
         public static readonly int BOUNDUP = 0;
         public static readonly int BOUNDDOWN = 1;
-        public static readonly int BOUNDLEFT = 2;
-        public static readonly int BOUNDRIGHT = 3;
+        public static readonly int BOUNDLEFT = 0;
+        public static readonly int BOUNDRIGHT = 1;
 
-        public Figura(int lenth, int positionX, int positionY, int orientation)
+        public Figura(int length, int positionX, int positionY, int orientation)
         {
-            Length = lenth;
+            X = positionX * Game.squareDimension;
+            Y = positionY * Game.squareDimension;
+            int width, heigth;
+            if (orientation == PORTRAIT)
+            {
+                heigth = length * Game.squareDimension;
+                width = Game.squareDimension;
+            }
+            else
+            {
+                width = length * Game.squareDimension;
+                heigth = Game.squareDimension;
+            }
+            rec = new Rectangle(X, Y, width, heigth);
+            brush = new SolidBrush(Color.Aquamarine);
+            Length = length;
             PositionX = positionX;
             PositionY = positionY;
             Orinetation = orientation;
-            Bounds = new int[4];
+            Bounds = new int[2];
         }
 
-        public bool move(int X,int Y)
+        public bool move(int X, int Y)
         {
             if (Orinetation == PORTRAIT)
             {
@@ -46,6 +66,7 @@ namespace FinkiManEscape
             else
             {
                 //ispitaj granice
+                //RAZRABOTI GA ZA BOUNDS
                 if (PositionX + X > Bounds[BOUNDRIGHT] * Game.squareDimension || PositionY + Y < Bounds[BOUNDLEFT] * Game.squareDimension)
                 {
                     return false; //nadvor od granici
@@ -63,14 +84,7 @@ namespace FinkiManEscape
         public void draw(Graphics g)
         {
             //iscrtaj figuru
-            if (Orinetation == PORTRAIT)
-            {
-
-            }
-            else
-            {
-
-            }
+            g.FillRectangle(brush, rec);
         }
        
     }
