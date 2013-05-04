@@ -89,8 +89,8 @@ namespace FinkiManEscape
                             break;
                         }
                     }
-                    if (isBreak) break;
                 }
+                if (isBreak) break;
             }
 
             figuri[CurrentActive].PositionX *= squareDimension;
