@@ -57,6 +57,7 @@ namespace FinkiManEscape
             {
                 for (int i = 0; i < figuri[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
                 {
+
                     if (figuri[j].Orinetation == Figura.PORTRAIT)
                     {
                         Grid[figuri[j].PositionX][figuri[j].PositionY + i] = j;//ako e portrait se oznacuvaat po y-oska (positionX i positionY se pocetni kocki)
@@ -73,7 +74,7 @@ namespace FinkiManEscape
         /// </summary>
         /// <param name="x">x-koordinata na poleto</param>
         /// <param name="y">y koordinata</param>
-        public void prepareMove(int x, int y)
+        public bool prepareMove(int x, int y)
         {
             for (int i = 0; i < Grid.Length; i++)
             {
@@ -91,10 +92,16 @@ namespace FinkiManEscape
                     }
                 }
                 if (isBreak) break;
+                
             }
-
-            figuri[CurrentActive].PositionX *= squareDimension;
-            figuri[CurrentActive].PositionY *= squareDimension;
+            if (CurrentActive != -1) 
+            {
+                figuri[CurrentActive].PositionX *= squareDimension;
+                figuri[CurrentActive].PositionY *= squareDimension;
+                return true;
+            }
+            else return false;
+            
 
         }
         /// <summary>
@@ -124,6 +131,7 @@ namespace FinkiManEscape
             {
                 f.draw(g);
             }
+
         }
     }
 }

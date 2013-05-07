@@ -57,21 +57,23 @@ namespace FinkiManEscape
             if (Orinetation == PORTRAIT)
             {
                 //ispitaj dali e do kraj
-                if (PositionY + Y > Bounds[BOUNDDOWN] * Game.squareDimension || PositionY + Y < Bounds[BOUNDUP] * Game.squareDimension)
-                {
-                    return false; //nadvor od granici
-                }
-                PositionY += Y;
+               // if (PositionY + Y > Bounds[BOUNDDOWN] * Game.squareDimension || PositionY + Y < Bounds[BOUNDUP] * Game.squareDimension)
+              //  {
+                 //   return false; //nadvor od granici
+               // }
+                PositionY += Y;//razlikaod poslednjo
+                rec = new Rectangle(PositionX, PositionY, Game.squareDimension, Length * Game.squareDimension);
             }
             else
             {
                 //ispitaj granice
                 //RAZRABOTI GA ZA BOUNDS
-                if (PositionX + X > Bounds[BOUNDRIGHT] * Game.squareDimension || PositionY + Y < Bounds[BOUNDLEFT] * Game.squareDimension)
-                {
-                    return false; //nadvor od granici
-                }
+              //  if (PositionX + X > Bounds[BOUNDRIGHT] * Game.squareDimension || PositionY + Y < Bounds[BOUNDLEFT] * Game.squareDimension)
+               // {
+               //     return false; //nadvor od granici
+               // }
                 PositionX += X;
+                rec = new Rectangle(PositionX, PositionY, Length * Game.squareDimension, Game.squareDimension);
             }
             return true;
         }
@@ -84,6 +86,8 @@ namespace FinkiManEscape
         public void draw(Graphics g)
         {
             //iscrtaj figuru
+            Random rnd=new Random();
+          
             g.FillRectangle(brush, rec);
         }
        
