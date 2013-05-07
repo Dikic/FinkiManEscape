@@ -59,6 +59,7 @@ namespace FinkiManEscape
         {
             if (moving)
             {
+                //u for gu povikuesh Game.adjust i se pravi invalidate 
                 game.finishMove();
                 moving = false;
             }
@@ -70,7 +71,7 @@ namespace FinkiManEscape
             game.draw(e.Graphics);
             e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(0, 0, 600, 600));
         }
-
+        
 
     }
 }

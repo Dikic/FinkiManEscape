@@ -78,11 +78,6 @@ namespace FinkiManEscape
             return true;
         }
 
-        public void adjust()
-        {
-            //pri mouseUp treba da gu namesti figuru na mesto 
-        }
-
         public void draw(Graphics g)
         {
             //iscrtaj figuru

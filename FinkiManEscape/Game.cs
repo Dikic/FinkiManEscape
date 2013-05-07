@@ -109,18 +109,19 @@ namespace FinkiManEscape
         /// </summary>
         public void finishMove()
         {
-            figuri[CurrentActive].adjust();
+            //figuri[CurrentActive].adjust();
             figuri[CurrentActive].PositionX /= squareDimension;
             figuri[CurrentActive].PositionY /= squareDimension;
             CurrentActive = EMPTYSQUARE;
             updateGrid();
         }
+
         public bool moveCurrent(int X, int Y)
         {
             if (CurrentActive != EMPTYSQUARE)
             {
                 if (!figuri[CurrentActive].move(X, Y)) return false;
-                //da se dopuni i provadjanje niz svi draw metode ss for
+                
             }
             return true;
         }
