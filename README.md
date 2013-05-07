@@ -1,4 +1,4 @@
-FinkiManEscape
+﻿FinkiManEscape
 ==============
 
 Igra za seminarska
@@ -8,4 +8,4 @@ to do:</b>
 2. Аплауз кд ќе заврши игра (студент стигне до крај)</b>
 3. Док не га пројдеш едн левел, друг не можеш да играш</b>
 4. Три нивоа (easy,medium,hard)</b>
-5. 
+5. milaaaaa
