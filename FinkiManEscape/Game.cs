@@ -76,24 +76,8 @@ namespace FinkiManEscape
         /// <param name="y">y koordinata</param>
         public bool prepareMove(int x, int y)
         {
-            for (int i = 0; i < Grid.Length; i++)
-            {
-                bool isBreak = false;
-                for (int j = 0; j < Grid[i].Length; j++)
-                {
-                    if (x > i * squareDimension && x < (i + 1) * squareDimension)
-                    {
-                        if (y > j * squareDimension && y < (j + 1) * squareDimension)
-                        {
-                            CurrentActive = Grid[i][j];
-                            isBreak = true;
-                            break;
-                        }
-                    }
-                }
-                if (isBreak) break;
-                
-            }
+            CurrentActive = Grid[x / squareDimension][y / squareDimension];
+
             if (CurrentActive != -1) 
             {
                 figuri[CurrentActive].PositionX *= squareDimension;
