@@ -30,6 +30,9 @@ namespace FinkiManEscape
             
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
+            //------brisi ovoj posle
+            figuri[3].brush = new SolidBrush(Color.Red);
+            //------------------------------------------
         }
 
         public void initializeGrid()
