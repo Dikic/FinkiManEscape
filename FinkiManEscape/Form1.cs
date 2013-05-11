@@ -24,6 +24,7 @@ namespace FinkiManEscape
             f[0] = f1;
             f[1] = f2;
             game = new Game(f);
+           
             dX = dY = 0;
             moving = false;    
             
@@ -60,8 +61,12 @@ namespace FinkiManEscape
         {
             if (moving)
             {
-                //u for gu povikuesh Game.adjust i se pravi invalidate 
+                while (game.adjust())
+                {
+                    Invalidate();
+                }
                 game.finishMove();
+               // Invalidate();
                 moving = false;
             }
             dX = dY = 0;
@@ -70,7 +75,7 @@ namespace FinkiManEscape
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             game.draw(e.Graphics);
-            e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(0, 0, 600, 600));
+            e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(0, 0, 605, 605));
         }
         
 

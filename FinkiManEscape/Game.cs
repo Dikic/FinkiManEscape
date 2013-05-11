@@ -76,8 +76,10 @@ namespace FinkiManEscape
         /// <param name="y">y koordinata</param>
         public bool prepareMove(int x, int y)
         {
-            CurrentActive = Grid[x / squareDimension][y / squareDimension];
-
+            if (x < Grid.Length * squareDimension && y < Grid.Length * squareDimension)
+            {
+                CurrentActive = Grid[x / squareDimension][y / squareDimension];
+            }
             if (CurrentActive != -1) 
             {
                 updateBounds();
@@ -146,7 +148,6 @@ namespace FinkiManEscape
         /// </summary>
         public void finishMove()
         {
-            //figuri[CurrentActive].adjust();
             figuri[CurrentActive].PositionX /= squareDimension;
             figuri[CurrentActive].PositionY /= squareDimension;
             CurrentActive = EMPTYSQUARE;
@@ -171,5 +172,28 @@ namespace FinkiManEscape
             }
 
         }
+
+        public bool adjust()
+        {
+            if (figuri[CurrentActive].Orinetation == Figura.PORTRAIT)
+            {
+                int t = figuri[CurrentActive].PositionY % 100;
+                if (t == 0) return false;
+                else
+                    if (t < 50) figuri[CurrentActive].move(0,-1);
+                    else figuri[CurrentActive].move(0,1);
+            }
+            else
+            {
+                int t = figuri[CurrentActive].PositionX % 100;
+                if (t == 0) return false;
+                else
+                    if (t < 50) figuri[CurrentActive].move(-1, 0);
+                    else figuri[CurrentActive].move(1, 0);
+            }
+            return true;
+        }
+
+        
     }
 }
