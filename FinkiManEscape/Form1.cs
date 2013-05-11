@@ -25,7 +25,8 @@ namespace FinkiManEscape
             f[1] = f2;
             game = new Game(f);
             dX = dY = 0;
-            moving = false;           
+            moving = false;    
+            
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)

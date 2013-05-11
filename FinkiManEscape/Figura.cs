@@ -56,22 +56,19 @@ namespace FinkiManEscape
         {
             if (Orinetation == PORTRAIT)
             {
-                //ispitaj dali e do kraj
-               // if (PositionY + Y > Bounds[BOUNDDOWN] * Game.squareDimension || PositionY + Y < Bounds[BOUNDUP] * Game.squareDimension)
-              //  {
-                 //   return false; //nadvor od granici
-               // }
+                if (PositionY + Y < Bounds[BOUNDUP] || PositionY + Y + Length * Game.squareDimension > Bounds[BOUNDDOWN])
+                {
+                    return false;
+                }
                 PositionY += Y;//razlikaod poslednjo
                 rec = new Rectangle(PositionX, PositionY, Game.squareDimension, Length * Game.squareDimension);
             }
             else
             {
-                //ispitaj granice
-                //RAZRABOTI GA ZA BOUNDS
-              //  if (PositionX + X > Bounds[BOUNDRIGHT] * Game.squareDimension || PositionY + Y < Bounds[BOUNDLEFT] * Game.squareDimension)
-               // {
-               //     return false; //nadvor od granici
-               // }
+                if (PositionX + X < Bounds[BOUNDLEFT] || PositionX + X + Length * Game.squareDimension > Bounds[BOUNDRIGHT])
+                {
+                    return false;
+                }
                 PositionX += X;
                 rec = new Rectangle(PositionX, PositionY, Length * Game.squareDimension, Game.squareDimension);
             }

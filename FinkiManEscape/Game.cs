@@ -80,6 +80,7 @@ namespace FinkiManEscape
 
             if (CurrentActive != -1) 
             {
+                updateBounds();
                 figuri[CurrentActive].PositionX *= squareDimension;
                 figuri[CurrentActive].PositionY *= squareDimension;
                 return true;
@@ -87,6 +88,58 @@ namespace FinkiManEscape
             else return false;
             
 
+        }
+
+        private void updateBounds()
+        {
+            if (figuri[CurrentActive].Orinetation == Figura.LANDSCAPE)
+            {
+                int begin = figuri[CurrentActive].PositionX;
+                int Y = figuri[CurrentActive].PositionY;
+                int br = 0;
+                while (begin != 0)
+                {
+                    if (Grid[begin - 1][Y] == EMPTYSQUARE) br++;
+                    else break;
+                    begin--;
+                }
+                figuri[CurrentActive].Bounds[Figura.BOUNDLEFT] = (figuri[CurrentActive].PositionX - br) * Game.squareDimension;
+
+                begin = figuri[CurrentActive].PositionX + figuri[CurrentActive].Length-1;
+                br = 0;
+                begin++;
+                while (begin != Grid.Length)
+                {
+                    if (Grid[begin][Y] == EMPTYSQUARE) br++;
+                    else break;
+                    begin++;
+                }
+                figuri[CurrentActive].Bounds[Figura.BOUNDRIGHT] = (br + figuri[CurrentActive].PositionX + figuri[CurrentActive].Length) * Game.squareDimension;
+            }
+            else
+            {
+                int begin = figuri[CurrentActive].PositionY;
+                int X = figuri[CurrentActive].PositionX;
+                int br = 0;
+                while (begin != 0)
+                {
+                    if (Grid[X][begin - 1] == EMPTYSQUARE) br++;
+                    else break;
+                    begin--;
+                }
+                figuri[CurrentActive].Bounds[Figura.BOUNDUP] = (figuri[CurrentActive].PositionY-br) * Game.squareDimension;
+
+                begin = figuri[CurrentActive].PositionY + figuri[CurrentActive].Length-1;
+                br = 0;
+                begin++;
+                while (begin != Grid.Length)
+                {
+                    if (Grid[X][begin] == EMPTYSQUARE) br++;
+                    else break;
+                    begin++;
+                }
+                figuri[CurrentActive].Bounds[Figura.BOUNDDOWN] = (br + figuri[CurrentActive].PositionY + figuri[CurrentActive].Length) * Game.squareDimension;
+            }
         }
         /// <summary>
         /// Zavrsuvanje na move obavezno pri mouse up
