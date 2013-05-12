@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using FinkiManEscape.Properties;
+
 
 namespace FinkiManEscape
 {
     public partial class Form1 : Form
     {
+        Image slika;
         Game game;
         int dX, dY;
         bool moving;
@@ -30,7 +33,8 @@ namespace FinkiManEscape
             Figura f10 = new Figura(2, 3, 5, Figura.LANDSCAPE);
             Figura f11 = new Figura(2, 5, 1, Figura.PORTRAIT);
             Figura f12 = new Figura(2, 5, 3, Figura.PORTRAIT);
-            Figura[] f = new Figura[12];
+            Student s = new Student(1, 0, 0, Figura.LANDSCAPE, true);
+            Figura[] f = new Figura[13];
             f[0] = f1;
             f[1] = f2;
             f[2] = f3;
@@ -43,10 +47,13 @@ namespace FinkiManEscape
             f[9] = f10;
             f[10] = f11;
             f[11] = f12;
+            f[12] = s;
             game = new Game(f);
             
             dX = dY = 0;
-            moving = false;    
+            moving = false;
+          
+            DoubleBuffered = true;
             
         }
 
