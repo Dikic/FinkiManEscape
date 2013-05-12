@@ -27,5 +27,10 @@ namespace FinkiManEscape
         {
             g.DrawImage(image, this.rec);
         }
+        public override bool endGame()
+        {
+            //implementacija
+            return false;
+        }
     }
 }

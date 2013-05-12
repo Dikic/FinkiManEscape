@@ -16,6 +16,10 @@ namespace FinkiManEscape
         public override void draw(System.Drawing.Graphics g)
         {
             g.FillRectangle(this.brush, this.rec);
-        } 
+        }
+        public override bool endGame()
+        {
+            return false;
+        }
     }
 }
