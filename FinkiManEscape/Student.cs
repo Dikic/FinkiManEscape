@@ -10,7 +10,7 @@ namespace FinkiManEscape
 {
     class Student: Figura
     {
-        Image slika;
+        Image image;
         bool male;
 
         public Student(int length, int positionX, int positionY, int orientation, bool male):base (length, positionX, positionY, orientation)
@@ -18,9 +18,14 @@ namespace FinkiManEscape
             this.male = male;
             if (this.male)
             {
-                this.slika = Resources.finki;
+                this.image = Resources.finki;
             }
-            else this.slika = Resources.pou;
+            else this.image = Resources.pou;
+        }
+
+        public override void draw(Graphics g)
+        {
+            g.DrawImage(image, this.rec);
         }
     }
 }

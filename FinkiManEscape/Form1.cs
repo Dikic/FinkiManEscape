@@ -21,20 +21,19 @@ namespace FinkiManEscape
         public Form1()
         {
             InitializeComponent();
-            Figura f1 = new Figura(2, 2, 0, Figura.PORTRAIT);
-            Figura f2 = new Figura(2, 0, 1, Figura.LANDSCAPE);
-            Figura f3 = new Figura(2, 0, 2, Figura.PORTRAIT);
-            Figura f4 = new Figura(2, 1, 2, Figura.LANDSCAPE);
-            Figura f5 = new Figura(2, 1, 3, Figura.PORTRAIT);
-            Figura f6 = new Figura(2, 2, 4, Figura.LANDSCAPE);
-            Figura f7 = new Figura(2, 3, 1, Figura.PORTRAIT);
-            Figura f8 = new Figura(3, 3, 0, Figura.LANDSCAPE);
-            Figura f9 = new Figura(3, 4, 2, Figura.PORTRAIT);
-            Figura f10 = new Figura(2, 3, 5, Figura.LANDSCAPE);
-            Figura f11 = new Figura(2, 5, 1, Figura.PORTRAIT);
-            Figura f12 = new Figura(2, 5, 3, Figura.PORTRAIT);
-            Student s = new Student(1, 0, 0, Figura.LANDSCAPE, true);
-            Figura[] f = new Figura[13];
+            Figura f1 = new Blocks(2, 2, 0, Figura.PORTRAIT);
+            Figura f2 = new Blocks(2, 0, 1, Figura.LANDSCAPE);
+            Figura f3 = new Blocks(2, 0, 2, Figura.PORTRAIT);
+            Figura f4 = new Student(2, 1, 2, Figura.LANDSCAPE,true);
+            Figura f5 = new Blocks(2, 1, 3, Figura.PORTRAIT);
+            Figura f6 = new Blocks(2, 2, 4, Figura.LANDSCAPE);
+            Figura f7 = new Blocks(2, 3, 1, Figura.PORTRAIT);
+            Figura f8 = new Blocks(3, 3, 0, Figura.LANDSCAPE);
+            Figura f9 = new Blocks(3, 4, 2, Figura.PORTRAIT);
+            Figura f10 = new Blocks(2, 3, 5, Figura.LANDSCAPE);
+            Figura f11 = new Blocks(2, 5, 1, Figura.PORTRAIT);
+            Figura f12 = new Blocks(2, 5, 3, Figura.PORTRAIT);
+            Figura[] f = new Figura[12];
             f[0] = f1;
             f[1] = f2;
             f[2] = f3;
@@ -47,7 +46,6 @@ namespace FinkiManEscape
             f[9] = f10;
             f[10] = f11;
             f[11] = f12;
-            f[12] = s;
             game = new Game(f);
             
             dX = dY = 0;

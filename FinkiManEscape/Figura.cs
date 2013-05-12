@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace FinkiManEscape
 {
-    class Figura
+    abstract class Figura
     {
-        private Rectangle rec;
+        public Rectangle rec;
         public Brush brush;
         public int Length { get; set; }//kolko kocke da zafati
 
@@ -77,10 +77,9 @@ namespace FinkiManEscape
             return true;
         }
 
-        public void draw(Graphics g)
+        virtual public void draw(Graphics g)
         {
-            //iscrtaj figuru
-            g.FillRectangle(brush, rec);
+           
         }
        
     }
