@@ -211,6 +211,7 @@ namespace FinkiManEscape
             {
                 figuri[CurrentActive].PositionX++;
                 figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + figuri[CurrentActive].gap, figuri[CurrentActive].PositionY + figuri[CurrentActive].gap, figuri[CurrentActive].Length * Game.squareDimension - figuri[CurrentActive].gap, Game.squareDimension - figuri[CurrentActive].gap);
+                
             }
             return true;
         }
