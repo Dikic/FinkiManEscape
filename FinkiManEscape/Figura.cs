@@ -77,8 +77,8 @@ namespace FinkiManEscape
             return true;
         }
 
-        virtual public void draw(Graphics g);
-        virtual public bool endGame();
+        abstract public void draw(Graphics g);
+        abstract public bool endGame();
        
     }
 }

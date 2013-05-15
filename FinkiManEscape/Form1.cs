@@ -18,6 +18,7 @@ namespace FinkiManEscape
         Game game;
         int dX, dY;
         bool moving;
+        bool drawFinish;
         public Form1()
         {
             InitializeComponent();
@@ -52,7 +53,7 @@ namespace FinkiManEscape
             moving = false;
           
             DoubleBuffered = true;
-            
+            drawFinish = false;
         }
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -90,8 +91,15 @@ namespace FinkiManEscape
                 {
                     Invalidate();
                 }
-                game.finishMove();
-               // Invalidate();
+                if (game.endGame())
+                {
+                    while (game.drawFinish())
+                    {
+                        Invalidate();
+                    }
+                }
+                else
+                    game.finishMove();
                 moving = false;
             }
             dX = dY = 0;

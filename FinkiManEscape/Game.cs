@@ -153,7 +153,6 @@ namespace FinkiManEscape
         {
             figuri[CurrentActive].PositionX /= squareDimension;
             figuri[CurrentActive].PositionY /= squareDimension;
-            CurrentActive = EMPTYSQUARE;
             updateGrid();
         }
 
@@ -197,6 +196,23 @@ namespace FinkiManEscape
             return true;
         }
 
-        
+
+
+        public bool endGame()
+        {
+            return figuri[CurrentActive].endGame();
+        }
+
+        public bool drawFinish()
+        {
+            int t = 600 - figuri[CurrentActive].PositionX;
+            if (t == 0) return false;
+            else
+            {
+                figuri[CurrentActive].PositionX++;
+                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + figuri[CurrentActive].gap, figuri[CurrentActive].PositionY + figuri[CurrentActive].gap, figuri[CurrentActive].Length * Game.squareDimension - figuri[CurrentActive].gap, Game.squareDimension - figuri[CurrentActive].gap);
+            }
+            return true;
+        }
     }
 }
