@@ -21,7 +21,6 @@ namespace FinkiManEscape
         bool drawFinish;
         public Form1()
         {
-
             InitializeComponent();
             Figura f1 = new Blocks(2, 2, 0, Figura.PORTRAIT);
             Figura f2 = new Blocks(2, 0, 1, Figura.LANDSCAPE);
