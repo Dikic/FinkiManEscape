@@ -18,9 +18,9 @@ namespace FinkiManEscape
             this.male = male;
             if (this.male)
             {
-                this.image = Resources.finki;
+                this.image = Resources.boywithbook;
             }
-            else this.image = Resources.pou;
+            else this.image = Resources.girlwithbook;
         }
 
         public override void draw(Graphics g)
