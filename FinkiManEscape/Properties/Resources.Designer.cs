@@ -88,9 +88,23 @@ namespace FinkiManEscape.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap leftDoor {
+            get {
+                object obj = ResourceManager.GetObject("leftDoor", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap rightDoor {
+            get {
+                object obj = ResourceManager.GetObject("rightDoor", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
