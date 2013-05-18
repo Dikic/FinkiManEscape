@@ -29,6 +29,8 @@ namespace FinkiManEscape
         public static readonly int BOUNDRIGHT = 1;
 
         public int gap { set; get; }
+        public static readonly int paddingX = 10;
+        public static readonly int paddingY = 35;
         public Figura(int length, int positionX, int positionY, int orientation)
         {
             X = positionX * Game.squareDimension;
@@ -45,8 +47,8 @@ namespace FinkiManEscape
                 heigth = Game.squareDimension;
             }
             gap = 4;
-            rec = new Rectangle(X + gap, Y + gap, width - gap, heigth - gap);
-            brush = new SolidBrush(Color.Aquamarine);
+            rec = new Rectangle(X + gap + paddingX, Y + gap + paddingY, width - gap, heigth - gap);
+            brush = new SolidBrush(Color.Aqua);
             Length = length;
             PositionX = positionX;
             PositionY = positionY;
@@ -63,7 +65,7 @@ namespace FinkiManEscape
                     return false;
                 }
                 PositionY += Y;//razlikaod poslednjo
-                rec = new Rectangle(PositionX + gap, PositionY + gap, Game.squareDimension - gap, Length * Game.squareDimension - gap);
+                rec = new Rectangle(PositionX + gap + paddingX, PositionY + gap + paddingY, Game.squareDimension - gap, Length * Game.squareDimension - gap);
             }
             else
             {
@@ -72,7 +74,7 @@ namespace FinkiManEscape
                     return false;
                 }
                 PositionX += X;
-                rec = new Rectangle(PositionX + gap, PositionY + gap, Length * Game.squareDimension - gap, Game.squareDimension - gap);
+                rec = new Rectangle(PositionX + gap + paddingX, PositionY + gap + paddingY, Length * Game.squareDimension - gap, Game.squareDimension - gap);
             }
             return true;
         }

@@ -14,7 +14,7 @@ namespace FinkiManEscape
 {
     public partial class Form1 : Form
     {
-        Image slika;
+        
         Game game;
         int dX, dY;
         bool moving;
@@ -25,7 +25,7 @@ namespace FinkiManEscape
             Figura f1 = new Blocks(2, 2, 0, Figura.PORTRAIT);
             Figura f2 = new Blocks(2, 0, 1, Figura.LANDSCAPE);
             Figura f3 = new Blocks(2, 0, 2, Figura.PORTRAIT);
-            Figura f4 = new Student(2, 1, 2, Figura.LANDSCAPE,true);
+            Figura f4 = new Student(2, 1, 2, Figura.LANDSCAPE,false);
             Figura f5 = new Blocks(2, 1, 3, Figura.PORTRAIT);
             Figura f6 = new Blocks(2, 2, 4, Figura.LANDSCAPE);
             Figura f7 = new Blocks(2, 3, 1, Figura.PORTRAIT);
@@ -120,8 +120,8 @@ namespace FinkiManEscape
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            e.Graphics.DrawImage(Resources.grid, new Rectangle(0, 25, 625, 625));
             game.draw(e.Graphics);
-            e.Graphics.DrawRectangle(new Pen(Color.Black), new Rectangle(0, 0, 605, 605));
         }
         
 

@@ -79,9 +79,9 @@ namespace FinkiManEscape
         /// <param name="y">y koordinata</param>
         public bool prepareMove(int x, int y)
         {
-            if (x < Grid.Length * squareDimension && y < Grid.Length * squareDimension)
+            if (x < Grid.Length * squareDimension + Figura.paddingX && y < Grid.Length * squareDimension + Figura.paddingY)
             {
-                CurrentActive = Grid[x / squareDimension][y / squareDimension];
+                CurrentActive = Grid[(x - Figura.paddingX) / squareDimension][(y - Figura.paddingY) / squareDimension];
             }
             if (CurrentActive != -1) 
             {
@@ -205,12 +205,12 @@ namespace FinkiManEscape
 
         public bool drawFinish()
         {
-            int t = 600 - figuri[CurrentActive].PositionX;
+            int t = 600 - figuri[CurrentActive].PositionX + Figura.paddingY;
             if (t == 0) return false;
             else
             {
                 figuri[CurrentActive].PositionX++;
-                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + figuri[CurrentActive].gap, figuri[CurrentActive].PositionY + figuri[CurrentActive].gap, figuri[CurrentActive].Length * Game.squareDimension - figuri[CurrentActive].gap, Game.squareDimension - figuri[CurrentActive].gap);
+                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + figuri[CurrentActive].gap + Figura.paddingX, figuri[CurrentActive].PositionY + figuri[CurrentActive].gap + Figura.paddingY, figuri[CurrentActive].Length * Game.squareDimension - figuri[CurrentActive].gap, Game.squareDimension - figuri[CurrentActive].gap);
             }
             return true;
         }
