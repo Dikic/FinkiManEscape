@@ -29,7 +29,7 @@ namespace FinkiManEscape
         }
         public override bool endGame()
         {
-            if (PositionX + Length*Game.squareDimension == 600) return true;
+            if (PositionX + Length*Game.squareDimension == 6*Game.squareDimension) return true;
             return false;
         }
     }

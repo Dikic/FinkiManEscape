@@ -13,7 +13,7 @@ namespace FinkiManEscape
         public int[][] Grid;//koja kocka e slobodna a koja ne 6x6
         public static readonly int EMPTYSQUARE = -1;//flag za praznu kocku a drugi ke se oznacuev po redan broj od objekt sto dovadjav 1 za figura[1], 2 za figura[2]...
 
-        public static readonly int squareDimension = 100;//pikseli za duzinu i sirinu na ednu kocku
+        public static int squareDimension = 100;//pikseli za duzinu i sirinu na ednu kocku
 
         public int CurrentActive { set; get; }//momentalno aktivna figura za pomestuvanje
         /// <summary>
@@ -179,7 +179,7 @@ namespace FinkiManEscape
         {
             if (figuri[CurrentActive].Orinetation == Figura.PORTRAIT)
             {
-                int t = figuri[CurrentActive].PositionY % 100;
+                int t = figuri[CurrentActive].PositionY % squareDimension;
                 if (t == 0) return false;
                 else
                     if (t < 50) figuri[CurrentActive].move(0,-1);
@@ -187,7 +187,7 @@ namespace FinkiManEscape
             }
             else
             {
-                int t = figuri[CurrentActive].PositionX % 100;
+                int t = figuri[CurrentActive].PositionX % squareDimension;
                 if (t == 0) return false;
                 else
                     if (t < 50) figuri[CurrentActive].move(-1, 0);
@@ -205,14 +205,21 @@ namespace FinkiManEscape
 
         public bool drawFinish()
         {
-            int t = 600 - figuri[CurrentActive].PositionX + Figura.paddingY;
+            int t = 6 * Game.squareDimension + Figura.paddingY - figuri[CurrentActive].PositionX + Figura.paddingY;
             if (t == 0) return false;
             else
             {
                 figuri[CurrentActive].PositionX++;
-                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + figuri[CurrentActive].gap + Figura.paddingX, figuri[CurrentActive].PositionY + figuri[CurrentActive].gap + Figura.paddingY, figuri[CurrentActive].Length * Game.squareDimension - figuri[CurrentActive].gap, Game.squareDimension - figuri[CurrentActive].gap);
+                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + Figura.gap + Figura.paddingX, figuri[CurrentActive].PositionY + Figura.gap + Figura.paddingY, figuri[CurrentActive].Length * Game.squareDimension - Figura.gap, Game.squareDimension - Figura.gap);
             }
             return true;
+        }
+        public void reSize()
+        {
+            foreach (Figura f in figuri)
+            {
+                f.resize();
+            }
         }
     }
 }

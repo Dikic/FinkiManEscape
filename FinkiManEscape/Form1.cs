@@ -50,7 +50,7 @@ namespace FinkiManEscape
             //f[10] = f11;
             //f[11] = f12;
             game = new Game(f);
-            door = new Door(600 + Figura.paddingX * 2 + 5, Figura.paddingY + 2 * Game.squareDimension - Game.squareDimension / 2, 100, 100);
+            
             dX = dY = 0;
             moving = false;
           
@@ -58,26 +58,26 @@ namespace FinkiManEscape
             animationFinish = new Timer();
             animationFinish.Interval = 5;
             animationFinish.Tick += new EventHandler(animationFinish_Tick);
-
             initializePoints();
         }
 
         private void initializePoints()
         {
+            door = new Door(6 * Game.squareDimension + Figura.paddingX * 2, Figura.paddingY + 2 * Game.squareDimension - Game.squareDimension / 2, Game.squareDimension, Game.squareDimension);
             points = new Point[8];
-            points[0] = new Point(600 + 2 * Figura.paddingX + 5, 10);
-            points[1] = new Point(600 + 2 * Figura.paddingX + 200, 10);
-            points[2] = new Point(600 + 2 * Figura.paddingX + 200, 600 + Figura.paddingY + 140);
-            points[3] = new Point(600 + 2 * Figura.paddingX + 5, 600 + Figura.paddingY+15);
-            points[4] = new Point(625, 335);
-            points[5] = new Point(715, 335);
-            points[6] = new Point(715, 235);
-            points[7] = new Point(625, 235);
+            points[0] = new Point(6*Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height);
+            points[1] = new Point(6*Game.squareDimension + 2 * Figura.paddingX + 2*Game.squareDimension, menuStrip1.Height);
+            points[2] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX + 2*Game.squareDimension, 6 * Game.squareDimension + Figura.paddingY + 3*Game.squareDimension/2);
+            points[3] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + Figura.paddingY + menuStrip1.Height);
+            points[4] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX, 3 * Game.squareDimension + Figura.paddingY);
+            points[5] = new Point(7 * Game.squareDimension + Figura.paddingX, 3 * Game.squareDimension + Figura.paddingY);
+            points[6] = new Point(7 * Game.squareDimension + Figura.paddingX, 2 * Game.squareDimension + Figura.paddingY);
+            points[7] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX, 2 * Game.squareDimension + Figura.paddingY);
             points2 = new Point[4];
-            points2[0] = new Point(600 + 2 * Figura.paddingX + 5, 600 + Figura.paddingY + 15);
-            points2[1] = new Point(600 + 2 * Figura.paddingX + 200, 600 + Figura.paddingY + 140);
-            points2[2] = new Point(0, 600 + Figura.paddingY + 150);
-            points2[3] = new Point(0, 600 + Figura.paddingY + 15);
+            points2[0] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + Figura.paddingY+10);
+            points2[1] = new Point(6 * Game.squareDimension + 2 * Figura.paddingX + 2 * Game.squareDimension, 6 * Game.squareDimension + Figura.paddingY + 3 * Game.squareDimension / 2);
+            points2[2] = new Point(0, 6 * Game.squareDimension + Figura.paddingY + 3 * Game.squareDimension / 2);
+            points2[3] = new Point(0, 6 * Game.squareDimension + Figura.paddingY+10);
 
         }
 
@@ -143,11 +143,50 @@ namespace FinkiManEscape
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Resources.grid, new Rectangle(0, 25, 625, 625));
+            e.Graphics.DrawImage(Resources.grid, new Rectangle(0, this.menuStrip1.Height, 6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + menuStrip1.Height));
             game.draw(e.Graphics);
             e.Graphics.FillPolygon(new SolidBrush(Color.SandyBrown), points);
             e.Graphics.FillPolygon(new SolidBrush(Color.BurlyWood), points2);
             door.draw(e.Graphics);
+        }
+
+        private void smallToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Game.squareDimension = 30;
+            initializePoints();
+            Figura.gap = 1;
+            game.reSize();
+            this.Height = 285;
+            this.Width = 265;
+            Invalidate();
+        }
+
+        private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Game.squareDimension = 60;
+            initializePoints();
+            Figura.gap = 2;
+            game.reSize();
+            this.Height = 510;
+            this.Width = 505;
+            Invalidate();
+        }
+
+        private void bigToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Game.squareDimension = 100;
+            initializePoints();
+            Figura.gap = 4;
+            game.reSize();
+            this.Height = 780;
+            this.Width = 770;
+            Invalidate();
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           int cmd= Height;
+           cmd= Width;
         }
 
     }
