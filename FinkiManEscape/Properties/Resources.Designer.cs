@@ -95,6 +95,15 @@ namespace FinkiManEscape.Properties {
             }
         }
         
+        /// <summary>
+        ///   Looks up a localized string similar to 21210 2200 2011 2020 2130 2241 2310 3301 3420.
+        /// </summary>
+        internal static string levels {
+            get {
+                return ResourceManager.GetString("levels", resourceCulture);
+            }
+        }
+        
         internal static System.Drawing.Bitmap logo {
             get {
                 object obj = ResourceManager.GetObject("logo", resourceCulture);

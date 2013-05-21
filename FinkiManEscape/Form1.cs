@@ -21,6 +21,7 @@ namespace FinkiManEscape
         Timer animationFinish;
         Door door;
         private Point[] points, points2;
+        Levels levels;
         public Form1()
         {
             InitializeComponent();
@@ -49,8 +50,9 @@ namespace FinkiManEscape
             //f[9] = f10;
             //f[10] = f11;
             //f[11] = f12;
-            game = new Game(f);
-            
+            //game = new Game(f);
+            levels = new Levels();
+            game = new Game(levels[0]);
             dX = dY = 0;
             moving = false;
           

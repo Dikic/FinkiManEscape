@@ -8,7 +8,7 @@ namespace FinkiManEscape
 {
     class Game
     {
-        private Figura[] figuri;
+        public Level level { get; set; }
         
         public int[][] Grid;//koja kocka e slobodna a koja ne 6x6
         public static readonly int EMPTYSQUARE = -1;//flag za praznu kocku a drugi ke se oznacuev po redan broj od objekt sto dovadjav 1 za figura[1], 2 za figura[2]...
@@ -19,22 +19,24 @@ namespace FinkiManEscape
         /// <summary>
         /// Konstruktor
         /// </summary>
-        /// <param name="figuri">niza od objekti od figuri</param>
+        /// <param name="level">niza od objekti od level</param>
         public Game(Figura[] figuri)
         {
-            this.figuri = new Figura[figuri.Length];
-            for (int i = 0; i < figuri.Length; i++)
-           {
-              this.figuri[i] = figuri[i];
-            }
-            
+            level = new Level(figuri);
+
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
             //------brisi ovoj posle
-            figuri[3].brush = new SolidBrush(Color.Red);
+            level[3].brush = new SolidBrush(Color.Red);
             //------------------------------------------
         }
 
+        public Game(Level level)
+        {
+            this.level = level;
+            initializeGrid();
+            CurrentActive = EMPTYSQUARE;
+        }
         public void initializeGrid()
         {
             Grid = new int[6][];
@@ -56,18 +58,18 @@ namespace FinkiManEscape
                 }
             }
 
-            for (int j = 0; j < figuri.Length; j++)//projdi gi site figuri
+            for (int j = 0; j < level.Length; j++)//projdi gi site level
             {
-                for (int i = 0; i < figuri[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
+                for (int i = 0; i < level[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
                 {
 
-                    if (figuri[j].Orinetation == Figura.PORTRAIT)
+                    if (level[j].Orinetation == Figura.PORTRAIT)
                     {
-                        Grid[figuri[j].PositionX][figuri[j].PositionY + i] = j;//ako e portrait se oznacuvaat po y-oska (positionX i positionY se pocetni kocki)
+                        Grid[level[j].PositionX][level[j].PositionY + i] = j;//ako e portrait se oznacuvaat po y-oska (positionX i positionY se pocetni kocki)
                     }
                     else
                     {
-                        Grid[figuri[j].PositionX + i][figuri[j].PositionY] = j;
+                        Grid[level[j].PositionX + i][level[j].PositionY] = j;
                     }
                 }
             }
@@ -86,8 +88,8 @@ namespace FinkiManEscape
             if (CurrentActive != -1) 
             {
                 updateBounds();
-                figuri[CurrentActive].PositionX *= squareDimension;
-                figuri[CurrentActive].PositionY *= squareDimension;
+                level[CurrentActive].PositionX *= squareDimension;
+                level[CurrentActive].PositionY *= squareDimension;
                 return true;
             }
             else return false;
@@ -97,10 +99,10 @@ namespace FinkiManEscape
 
         private void updateBounds()
         {
-            if (figuri[CurrentActive].Orinetation == Figura.LANDSCAPE)
+            if (level[CurrentActive].Orinetation == Figura.LANDSCAPE)
             {
-                int begin = figuri[CurrentActive].PositionX;
-                int Y = figuri[CurrentActive].PositionY;
+                int begin = level[CurrentActive].PositionX;
+                int Y = level[CurrentActive].PositionY;
                 int br = 0;
                 while (begin != 0)
                 {
@@ -108,9 +110,9 @@ namespace FinkiManEscape
                     else break;
                     begin--;
                 }
-                figuri[CurrentActive].Bounds[Figura.BOUNDLEFT] = (figuri[CurrentActive].PositionX - br) * Game.squareDimension;
+                level[CurrentActive].Bounds[Figura.BOUNDLEFT] = (level[CurrentActive].PositionX - br) * Game.squareDimension;
 
-                begin = figuri[CurrentActive].PositionX + figuri[CurrentActive].Length-1;
+                begin = level[CurrentActive].PositionX + level[CurrentActive].Length-1;
                 br = 0;
                 begin++;
                 while (begin != Grid.Length)
@@ -119,12 +121,12 @@ namespace FinkiManEscape
                     else break;
                     begin++;
                 }
-                figuri[CurrentActive].Bounds[Figura.BOUNDRIGHT] = (br + figuri[CurrentActive].PositionX + figuri[CurrentActive].Length) * Game.squareDimension;
+                level[CurrentActive].Bounds[Figura.BOUNDRIGHT] = (br + level[CurrentActive].PositionX + level[CurrentActive].Length) * Game.squareDimension;
             }
             else
             {
-                int begin = figuri[CurrentActive].PositionY;
-                int X = figuri[CurrentActive].PositionX;
+                int begin = level[CurrentActive].PositionY;
+                int X = level[CurrentActive].PositionX;
                 int br = 0;
                 while (begin != 0)
                 {
@@ -132,9 +134,9 @@ namespace FinkiManEscape
                     else break;
                     begin--;
                 }
-                figuri[CurrentActive].Bounds[Figura.BOUNDUP] = (figuri[CurrentActive].PositionY-br) * Game.squareDimension;
+                level[CurrentActive].Bounds[Figura.BOUNDUP] = (level[CurrentActive].PositionY-br) * Game.squareDimension;
 
-                begin = figuri[CurrentActive].PositionY + figuri[CurrentActive].Length-1;
+                begin = level[CurrentActive].PositionY + level[CurrentActive].Length-1;
                 br = 0;
                 begin++;
                 while (begin != Grid.Length)
@@ -143,7 +145,7 @@ namespace FinkiManEscape
                     else break;
                     begin++;
                 }
-                figuri[CurrentActive].Bounds[Figura.BOUNDDOWN] = (br + figuri[CurrentActive].PositionY + figuri[CurrentActive].Length) * Game.squareDimension;
+                level[CurrentActive].Bounds[Figura.BOUNDDOWN] = (br + level[CurrentActive].PositionY + level[CurrentActive].Length) * Game.squareDimension;
             }
         }
         /// <summary>
@@ -151,8 +153,8 @@ namespace FinkiManEscape
         /// </summary>
         public void finishMove()
         {
-            figuri[CurrentActive].PositionX /= squareDimension;
-            figuri[CurrentActive].PositionY /= squareDimension;
+            level[CurrentActive].PositionX /= squareDimension;
+            level[CurrentActive].PositionY /= squareDimension;
             updateGrid();
         }
 
@@ -160,7 +162,7 @@ namespace FinkiManEscape
         {
             if (CurrentActive != EMPTYSQUARE)
             {
-                if (!figuri[CurrentActive].move(X, Y)) return false;
+                if (!level[CurrentActive].move(X, Y)) return false;
                 
             }
             return true;
@@ -168,7 +170,7 @@ namespace FinkiManEscape
 
         public void draw(Graphics g)
         {
-            foreach (Figura f in figuri)
+            foreach (Figura f in level.figuri)
             {
                 f.draw(g);
             }
@@ -177,21 +179,21 @@ namespace FinkiManEscape
 
         public bool adjust()
         {
-            if (figuri[CurrentActive].Orinetation == Figura.PORTRAIT)
+            if (level[CurrentActive].Orinetation == Figura.PORTRAIT)
             {
-                int t = figuri[CurrentActive].PositionY % squareDimension;
+                int t = level[CurrentActive].PositionY % squareDimension;
                 if (t == 0) return false;
                 else
-                    if (t < 50) figuri[CurrentActive].move(0,-1);
-                    else figuri[CurrentActive].move(0,1);
+                    if (t < 50) level[CurrentActive].move(0,-1);
+                    else level[CurrentActive].move(0,1);
             }
             else
             {
-                int t = figuri[CurrentActive].PositionX % squareDimension;
+                int t = level[CurrentActive].PositionX % squareDimension;
                 if (t == 0) return false;
                 else
-                    if (t < 50) figuri[CurrentActive].move(-1, 0);
-                    else figuri[CurrentActive].move(1, 0);
+                    if (t < 50) level[CurrentActive].move(-1, 0);
+                    else level[CurrentActive].move(1, 0);
             }
             return true;
         }
@@ -200,23 +202,23 @@ namespace FinkiManEscape
 
         public bool endGame()
         {
-            return figuri[CurrentActive].endGame();
+            return level[CurrentActive].endGame();
         }
 
         public bool drawFinish()
         {
-            int t = 6 * Game.squareDimension + Figura.paddingY - figuri[CurrentActive].PositionX + Figura.paddingY;
+            int t = 6 * Game.squareDimension + Figura.paddingY - level[CurrentActive].PositionX + Figura.paddingY;
             if (t == 0) return false;
             else
             {
-                figuri[CurrentActive].PositionX++;
-                figuri[CurrentActive].rec = new Rectangle(figuri[CurrentActive].PositionX + Figura.gap + Figura.paddingX, figuri[CurrentActive].PositionY + Figura.gap + Figura.paddingY, figuri[CurrentActive].Length * Game.squareDimension - Figura.gap, Game.squareDimension - Figura.gap);
+                level[CurrentActive].PositionX++;
+                level[CurrentActive].rec = new Rectangle(level[CurrentActive].PositionX + Figura.gap + Figura.paddingX, level[CurrentActive].PositionY + Figura.gap + Figura.paddingY, level[CurrentActive].Length * Game.squareDimension - Figura.gap, Game.squareDimension - Figura.gap);
             }
             return true;
         }
         public void reSize()
         {
-            foreach (Figura f in figuri)
+            foreach (Figura f in level.figuri)
             {
                 f.resize();
             }
