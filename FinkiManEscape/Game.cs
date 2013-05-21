@@ -39,17 +39,18 @@ namespace FinkiManEscape
         }
         public void initializeGrid()
         {
-            Grid = new int[6][];
-            for (int i = 0; i < Grid.Length; i++)
-            {
-                Grid[i] = new int[6];
-            }
+            
             //potpuni ga Grid prazni, puni kocke...
             updateGrid();
         }
 
         public void updateGrid()
         {
+            Grid = new int[6][];
+            for (int i = 0; i < Grid.Length; i++)
+            {
+                Grid[i] = new int[6];
+            }
             for (int i = 0; i < Grid.Length; i++)//inicijaliziraj na prazni
             {
                 for (int j = 0; j < Grid[i].Length; j++)
