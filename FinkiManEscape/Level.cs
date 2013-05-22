@@ -7,17 +7,19 @@ namespace FinkiManEscape
 {
     public class Level
     {
-        public int LevelNumber { get; set; }
-
+        public int LevelId { get; set; }
         public virtual Levels Levels { get; set; }
 
         public Figura[] figuri { get; set; }
 
+        public int LevelNumber { get; set; }
+        public int time { get { return time; } set { if (value < time)time = value; } }
+        public int moves { get { return time; } set { if (value < moves) moves = value; } }
         public int Length { get { return figuri.Length; } }
 
         public bool Finished { get; set; }
 
-        public int LevelId { get; set; }
+        
 
         public Level(Figura[] figuri)
         {
@@ -40,6 +42,10 @@ namespace FinkiManEscape
             {
                 figuri[key] = value;
             }
+        }
+        public override string ToString()
+        {
+            return string.Format("Level {0} | Best time {1}:{2} | Best moves {3}", LevelNumber, time / 60, time % 60, moves);
         }
     }
 }

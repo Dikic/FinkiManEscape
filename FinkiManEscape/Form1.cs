@@ -19,16 +19,26 @@ namespace FinkiManEscape
         Game game;
         int dX, dY;
         bool moving;
-        Timer animationFinish;
+        Timer animationFinish, levelTimer;
         Door door;
         private Point[] points, points2;
         Levels levels;
 
-        
+        int movesPerLevel;
+        int timePerLevel;
+
+        public enum WindowTypeSize
+        {
+            small,
+            medium,
+            big
+        }
+        public WindowTypeSize windowType { get; set; }
+
         public Form1()
         {
             InitializeComponent();
-            using (var db = new LevelsContext())
+            using (var db = new SaveLevelsContext())
             {
                 var query = (from b in db.Levels select b);
                 foreach (var item in query)
@@ -40,13 +50,23 @@ namespace FinkiManEscape
                 if (levels == null) levels = new Levels();
 
             }
+            windowType = WindowTypeSize.big;
             DoubleBuffered = true;
             animationFinish = new Timer();
             animationFinish.Interval = 5;
             animationFinish.Tick += new EventHandler(animationFinish_Tick);
+
+            levelTimer = new Timer();
+            levelTimer.Interval = 1000;
+            levelTimer.Tick += new EventHandler(levelTimer_Tick);
             initializePoints();
             newGame();
             
+        }
+
+        void levelTimer_Tick(object sender, EventArgs e)
+        {
+            timePerLevel++;
         }
 
         public void newGame()
@@ -55,6 +75,22 @@ namespace FinkiManEscape
             moving = false;
             game = new Game(levels.getCurrentLevel());
             initializePoints();
+            if (windowType == WindowTypeSize.small)
+            {
+                Game.squareDimension = 30;
+                Figura.gap = 1;
+                game.reSize();
+                this.Height = 285;
+                this.Width = 265;
+            }
+            else if (windowType == WindowTypeSize.medium)
+            {
+                Game.squareDimension = 60;
+                Figura.gap = 2;
+                game.reSize();
+                this.Height = 510;
+                this.Width = 505;
+            }
             Invalidate();
         }
 
@@ -143,6 +179,7 @@ namespace FinkiManEscape
                 else
                     game.finishMove();
                 moving = false;
+                movesPerLevel++;
             }
             dX = dY = 0;
         }
@@ -164,6 +201,7 @@ namespace FinkiManEscape
             game.reSize();
             this.Height = 285;
             this.Width = 265;
+            windowType = WindowTypeSize.small;
             Invalidate();
         }
 
@@ -175,6 +213,7 @@ namespace FinkiManEscape
             game.reSize();
             this.Height = 510;
             this.Width = 505;
+            windowType = WindowTypeSize.medium;
             Invalidate();
         }
 
@@ -186,12 +225,13 @@ namespace FinkiManEscape
             game.reSize();
             this.Height = 780;
             this.Width = 770;
+            windowType = WindowTypeSize.big;
             Invalidate();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (var db = new LevelsContext())
+            using (var db = new SaveLevelsContext())
             {
                 
                 db.Levels.Add(levels);
