@@ -5,13 +5,19 @@ using System.Text;
 
 namespace FinkiManEscape
 {
-    class Level
+    public class Level
     {
         public int LevelNumber { get; set; }
 
-        public Figura[] figuri;
+        public virtual Levels Levels { get; set; }
+
+        public Figura[] figuri { get; set; }
 
         public int Length { get { return figuri.Length; } }
+
+        public bool Finished { get; set; }
+
+        public int LevelId { get; set; }
 
         public Level(Figura[] figuri)
         {
@@ -20,7 +26,7 @@ namespace FinkiManEscape
             {
                 this.figuri[i] = figuri[i];
             }
-            
+            Finished = false;
         }
 
         public Figura this[int key]

@@ -6,8 +6,10 @@ using System.Drawing;
 
 namespace FinkiManEscape
 {
-    abstract class Figura
+    abstract public class Figura
     {
+        public int FiguraId { get; set; }
+
         public Rectangle rec;
         public Brush brush;
         public int Length { get; set; }//kolko kocke da zafati

@@ -23,12 +23,8 @@ namespace FinkiManEscape
         public Game(Figura[] figuri)
         {
             level = new Level(figuri);
-
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
-            //------brisi ovoj posle
-            level[3].brush = new SolidBrush(Color.Red);
-            //------------------------------------------
         }
 
         public Game(Level level)
@@ -36,6 +32,11 @@ namespace FinkiManEscape
             this.level = level;
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
+        }
+
+        public Game()
+        {
+
         }
         public void initializeGrid()
         {
