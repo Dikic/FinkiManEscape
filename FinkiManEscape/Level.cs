@@ -13,8 +13,10 @@ namespace FinkiManEscape
         public Figura[] figuri { get; set; }
 
         public int LevelNumber { get; set; }
-        public int time { get { return time; } set { if (value < time)time = value; } }
-        public int moves { get { return time; } set { if (value < moves) moves = value; } }
+        private int time;
+        private int moves;
+        public int Time { get { return time; } set { if (value < time)time = value; } }
+        public int Moves { get { return time; } set { if (value < moves) moves = value; } }
         public int Length { get { return figuri.Length; } }
 
         public bool Finished { get; set; }
@@ -23,6 +25,8 @@ namespace FinkiManEscape
 
         public Level(Figura[] figuri)
         {
+            time = 0;
+            moves = 0;
             this.figuri = new Figura[figuri.Length];
             for (int i = 0; i < figuri.Length; i++)
             {

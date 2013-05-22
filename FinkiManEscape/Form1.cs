@@ -38,18 +38,19 @@ namespace FinkiManEscape
         public Form1()
         {
             InitializeComponent();
-            using (var db = new SaveLevelsContext())
-            {
-                var query = (from b in db.Levels select b);
-                foreach (var item in query)
-                {
-                    levels = item;
-                    db.Levels.Remove(item);
-                }
-                db.SaveChanges();
-                if (levels == null) levels = new Levels();
+            //using (var db = new SaveLevelsContext())
+            //{
+            //    var query = (from b in db.Levels select b);
+            //    foreach (var item in query)
+            //    {
+            //        levels = item;
+            //        db.Levels.Remove(item);
+            //    }
+            //    db.SaveChanges();
+            //    if (levels == null) levels = new Levels();
 
-            }
+            //}
+            levels = new Levels();
             windowType = WindowTypeSize.big;
             DoubleBuffered = true;
             animationFinish = new Timer();
@@ -67,12 +68,15 @@ namespace FinkiManEscape
         void levelTimer_Tick(object sender, EventArgs e)
         {
             timePerLevel++;
+            Invalidate();
         }
 
         public void newGame()
         {
             dX = dY = 0;
             moving = false;
+            timePerLevel = 0;
+            movesPerLevel = 0;
             game = new Game(levels.getCurrentLevel());
             initializePoints();
             if (windowType == WindowTypeSize.small)
@@ -92,6 +96,7 @@ namespace FinkiManEscape
                 this.Width = 505;
             }
             Invalidate();
+            levelTimer.Start();
         }
 
         
@@ -167,10 +172,14 @@ namespace FinkiManEscape
                 if (game.endGame())
                 {
                    animationFinish.Start();
+                   levelTimer.Stop();
+                   levels.getCurrentLevel().Finished = true;
+                   levels.getCurrentLevel().Time = timePerLevel;
+                   levels.getCurrentLevel().Moves = movesPerLevel;
                    DialogResult d = MessageBox.Show("Level Finished", "Next Level?", MessageBoxButtons.YesNo);
                    if (d == DialogResult.Yes)
                    {
-                       levels.getCurrentLevel().Finished = true;
+                       
                        levels.nextLevel();
                        newGame();
                        animationFinish.Stop();
@@ -191,6 +200,9 @@ namespace FinkiManEscape
             e.Graphics.FillPolygon(new SolidBrush(Color.SandyBrown), points);
             e.Graphics.FillPolygon(new SolidBrush(Color.BurlyWood), points2);
             door.draw(e.Graphics);
+            Rectangle timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height,2*Game.squareDimension, Game.squareDimension);
+            e.Graphics.DrawRectangle(new Pen(Color.Black), timeRect);
+            e.Graphics.DrawString(string.Format("{0}:{1}\n{2}", timePerLevel / 60, timePerLevel % 60,levels.getCurrentLevel().ToString()), new Font("Ariel",15), new SolidBrush(Color.Black), timeRect);
         }
 
         private void smallToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,13 +243,13 @@ namespace FinkiManEscape
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            using (var db = new SaveLevelsContext())
-            {
+            //using (var db = new SaveLevelsContext())
+            //{
                 
-                db.Levels.Add(levels);
-                db.SaveChanges();
+            //    db.Levels.Add(levels);
+            //    db.SaveChanges();
 
-            }
+            //}
         }
 
         
