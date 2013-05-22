@@ -24,6 +24,8 @@ namespace FinkiManEscape
         private Point[] points, points2;
         Levels levels;
 
+        Rectangle timeRect;
+        int FontSize;
         int movesPerLevel;
         int timePerLevel;
 
@@ -60,11 +62,17 @@ namespace FinkiManEscape
             levelTimer = new Timer();
             levelTimer.Interval = 1000;
             levelTimer.Tick += new EventHandler(levelTimer_Tick);
+            timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
+            FontSize = 15;
+
             initializePoints();
             newGame();
             
         }
+        public void main_menu(Graphics g)
+        {
 
+        }
         void levelTimer_Tick(object sender, EventArgs e)
         {
             timePerLevel++;
@@ -200,9 +208,8 @@ namespace FinkiManEscape
             e.Graphics.FillPolygon(new SolidBrush(Color.SandyBrown), points);
             e.Graphics.FillPolygon(new SolidBrush(Color.BurlyWood), points2);
             door.draw(e.Graphics);
-            Rectangle timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height,2*Game.squareDimension, Game.squareDimension);
             e.Graphics.DrawRectangle(new Pen(Color.Black), timeRect);
-            e.Graphics.DrawString(string.Format("{0}:{1}\n{2}", timePerLevel / 60, timePerLevel % 60,levels.getCurrentLevel().ToString()), new Font("Ariel",15), new SolidBrush(Color.Black), timeRect);
+            e.Graphics.DrawString(string.Format("{0:00}:{1:00} moves:{2}\n{3}", timePerLevel / 60, timePerLevel % 60, movesPerLevel, levels.getCurrentLevel().ToString()), new Font("Ariel", FontSize), new SolidBrush(Color.Black), timeRect);
         }
 
         private void smallToolStripMenuItem_Click(object sender, EventArgs e)
@@ -211,9 +218,11 @@ namespace FinkiManEscape
             initializePoints();
             Figura.gap = 1;
             game.reSize();
-            this.Height = 285;
-            this.Width = 265;
+            this.Height = 288;
+            this.Width = 268;
             windowType = WindowTypeSize.small;
+            timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
+            FontSize = 5;
             Invalidate();
         }
 
@@ -223,9 +232,11 @@ namespace FinkiManEscape
             initializePoints();
             Figura.gap = 2;
             game.reSize();
-            this.Height = 510;
-            this.Width = 505;
+            this.Height = 513;
+            this.Width = 508;
             windowType = WindowTypeSize.medium;
+            timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
+            FontSize = 10;
             Invalidate();
         }
 
@@ -235,9 +246,11 @@ namespace FinkiManEscape
             initializePoints();
             Figura.gap = 4;
             game.reSize();
-            this.Height = 780;
-            this.Width = 770;
+            this.Height = 800;
+            this.Width = 790;
             windowType = WindowTypeSize.big;
+            timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
+            FontSize = 15;
             Invalidate();
         }
 
