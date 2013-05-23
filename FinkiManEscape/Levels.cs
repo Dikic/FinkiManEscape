@@ -10,13 +10,56 @@ namespace FinkiManEscape
     {
         public int LevelsId { get; set; }
         public List<Level> Level;
+        public Level OriginalCurrentLevel
+        {
+            get
+            {
+                string line = Resources.levels.Split('\n')[CurrentLevel];
+                int c = line.Split(' ').Length;
+                Figura[] figuri = new Figura[c];
+                string[] element = new string[c];
+                element = line.Split(' ');
+
+                int numbs;
+                if (Int32.TryParse(element[0], out numbs))
+                {
+                    Student s = new Student(numbs / 1000, (numbs % 1000) / 100, (numbs % 100) / 10, numbs % 10); 
+                    s.Male = Male;
+                    figuri[0] = s;
+                } for (int j = 1; j < c; j++)
+                {
+                    if (Int32.TryParse(element[j], out numbs))
+                    {
+                        figuri[j] = new Blocks(numbs / 1000, (numbs % 1000) / 100, (numbs % 100) / 10, numbs % 10);
+                    }
+                }
+                Level level = new Level(figuri);
+                level.LevelNumber = CurrentLevel;
+                return level;
+            }
+
+        }
         public int Count { get; set; }
         public int CurrentLevel { get; set; }
-        public static string Name = "ThisOne";
-        public Levels()
+        private bool male;
+
+        public bool Male
+        {
+            get { return male; }
+            set
+            {
+                male = value;
+                foreach (Level lev in Level)
+                {
+                    (lev.figuri[0] as Student).Male = value;
+                }
+            }
+        }
+        public Levels(bool male)
         {
             CurrentLevel = 0;
             Level = new List<Level>();
+            Male = male;
             int count =Resources.levels.Split('\n').Length;
            
             string[] lines = new string[count];
@@ -32,8 +75,9 @@ namespace FinkiManEscape
                 int numbs;
                 if (Int32.TryParse(element[0], out numbs))
                 {
-                    figuri[0] = new Student(numbs / 10000, (numbs % 10000) / 1000, (numbs % 1000) / 100, (numbs % 100) / 10, (numbs % 10) == 0);
-                    
+                    Student s= new Student(numbs / 1000, (numbs % 1000) / 100, (numbs % 100) / 10, numbs % 10);
+                    s.Male=male;
+                    figuri[0] = s;
                 }
                 
                 for (int j = 1; j < c; j++)

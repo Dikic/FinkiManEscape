@@ -69,6 +69,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
+    <Compile Include="Kopce.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Level.cs" />
     <Compile Include="Levels.cs" />
     <Compile Include="Program.cs" />
@@ -123,6 +126,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\levels.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button-16.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\finkiman.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeyThere.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconlogo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

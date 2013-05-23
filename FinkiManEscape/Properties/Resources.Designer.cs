@@ -74,6 +74,19 @@ namespace FinkiManEscape.Properties {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream button_16 {
+            get {
+                return ResourceManager.GetStream("button_16", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Bitmap finkiman {
+            get {
+                object obj = ResourceManager.GetObject("finkiman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap girlwithbook {
             get {
                 object obj = ResourceManager.GetObject("girlwithbook", resourceCulture);
@@ -88,6 +101,19 @@ namespace FinkiManEscape.Properties {
             }
         }
         
+        internal static System.IO.UnmanagedMemoryStream HeyThere {
+            get {
+                return ResourceManager.GetStream("HeyThere", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Icon iconlogo {
+            get {
+                object obj = ResourceManager.GetObject("iconlogo", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap leftDoor {
             get {
                 object obj = ResourceManager.GetObject("leftDoor", resourceCulture);
@@ -96,7 +122,12 @@ namespace FinkiManEscape.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 21210 2200 2011 2020 2130 2241 2310 3301 3420.
+        ///   Looks up a localized string similar to 21210 2200 2011 2020 2130 2241 2310 3301 3420
+        ///21210 3420
+        ///21210 2200 2020 2130 2241 2310 3301 3420
+        ///21210 2200 2130 2241 3301 3420
+        ///21210 2200 2011 2020 3420
+        ///21210 2011 2020 2130 2241 2310 3301 3420.
         /// </summary>
         internal static string levels {
             get {

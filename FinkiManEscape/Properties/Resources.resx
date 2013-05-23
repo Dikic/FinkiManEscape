@@ -124,11 +124,23 @@
   <data name="boywithbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\boywithbook.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="button_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button-16.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="finkiman" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\finkiman.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="girlwithbook" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\girlwithbook.PNG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HeyThere" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeyThere.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="iconlogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iconlogo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="leftDoor" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\leftDoor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

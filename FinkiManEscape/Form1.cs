@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using FinkiManEscape.Properties;
+using System.Media;
 
 
 namespace FinkiManEscape
@@ -29,6 +30,8 @@ namespace FinkiManEscape
         int movesPerLevel;
         int timePerLevel;
 
+        
+        public bool mainWindow { get; set; }
         public enum WindowTypeSize
         {
             small,
@@ -49,10 +52,10 @@ namespace FinkiManEscape
             //        db.Levels.Remove(item);
             //    }
             //    db.SaveChanges();
-            //    if (levels == null) levels = new Levels();
+            //    if (levels == null) levels = new Levels(true);
 
             //}
-            levels = new Levels();
+            levels = new Levels(true);
             windowType = WindowTypeSize.big;
             DoubleBuffered = true;
             animationFinish = new Timer();
@@ -63,15 +66,23 @@ namespace FinkiManEscape
             levelTimer.Interval = 1000;
             levelTimer.Tick += new EventHandler(levelTimer_Tick);
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
-            FontSize = 15;
+            FontSize = 14;
 
             initializePoints();
-            newGame();
+
+           
+            mainWindow = true;
             
         }
-        public void main_menu(Graphics g)
+        public void main_menu()
         {
-
+            btnStart.Visible = true;
+            btnExit.Visible = true;
+            //levelTimer.Stop();
+            btnStart.Text = "R e s u m e";
+            mainWindow = true;
+            Height = 500;
+            Width = 400;
         }
         void levelTimer_Tick(object sender, EventArgs e)
         {
@@ -87,6 +98,7 @@ namespace FinkiManEscape
             movesPerLevel = 0;
             game = new Game(levels.getCurrentLevel());
             initializePoints();
+
             if (windowType == WindowTypeSize.small)
             {
                 Game.squareDimension = 30;
@@ -94,6 +106,8 @@ namespace FinkiManEscape
                 game.reSize();
                 this.Height = 285;
                 this.Width = 265;
+                kopce1.Location = new Point(12,Height-kopce1.Height-5);
+                
             }
             else if (windowType == WindowTypeSize.medium)
             {
@@ -102,6 +116,16 @@ namespace FinkiManEscape
                 game.reSize();
                 this.Height = 510;
                 this.Width = 505;
+                kopce1.Location = new Point(12, Height - kopce1.Height - 5);
+            }
+            else
+            {
+                Game.squareDimension = 100;
+                Figura.gap = 4;
+                game.reSize();
+                this.Height = 800;
+                this.Width = 790;
+                kopce1.Top = Height-kopce1.Size.Height- 5;
             }
             Invalidate();
             levelTimer.Start();
@@ -203,13 +227,21 @@ namespace FinkiManEscape
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Resources.grid, new Rectangle(0, this.menuStrip1.Height, 6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + menuStrip1.Height));
-            game.draw(e.Graphics);
-            e.Graphics.FillPolygon(new SolidBrush(Color.SandyBrown), points);
-            e.Graphics.FillPolygon(new SolidBrush(Color.BurlyWood), points2);
-            door.draw(e.Graphics);
-            e.Graphics.DrawRectangle(new Pen(Color.Black), timeRect);
-            e.Graphics.DrawString(string.Format("{0:00}:{1:00} moves:{2}\n{3}", timePerLevel / 60, timePerLevel % 60, movesPerLevel, levels.getCurrentLevel().ToString()), new Font("Ariel", FontSize), new SolidBrush(Color.Black), timeRect);
+            if (mainWindow)
+            {
+
+            }
+            else
+            {
+
+                e.Graphics.DrawImage(Resources.grid, new Rectangle(0, this.menuStrip1.Height, 6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + menuStrip1.Height));
+                game.draw(e.Graphics);
+                e.Graphics.FillPolygon(new SolidBrush(Color.SandyBrown), points);
+                e.Graphics.FillPolygon(new SolidBrush(Color.BurlyWood), points2);
+                door.draw(e.Graphics);
+                e.Graphics.DrawRectangle(new Pen(Color.Black), timeRect);
+                e.Graphics.DrawString(string.Format("{0:00}:{1:00} moves:{2}\n{3}", timePerLevel / 60, timePerLevel % 60, movesPerLevel, levels.getCurrentLevel().ToString()), new Font("Comic Sans MS", FontSize), new SolidBrush(Color.Black), timeRect);
+            }
         }
 
         private void smallToolStripMenuItem_Click(object sender, EventArgs e)
@@ -222,7 +254,9 @@ namespace FinkiManEscape
             this.Width = 268;
             windowType = WindowTypeSize.small;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
-            FontSize = 5;
+            FontSize = 4;
+            kopce1.Location = new Point(12, Height - kopce1.Height - 30 - Figura.paddingX);
+            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -236,7 +270,10 @@ namespace FinkiManEscape
             this.Width = 508;
             windowType = WindowTypeSize.medium;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
-            FontSize = 10;
+            FontSize = 8;
+
+            kopce1.Location = new Point(12, Height - kopce1.Height - 30-Figura.paddingX);
+            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -250,7 +287,9 @@ namespace FinkiManEscape
             this.Width = 790;
             windowType = WindowTypeSize.big;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
-            FontSize = 15;
+            FontSize = 14;
+            kopce1.Location = new Point(12, Height - kopce1.Height - 30 - Figura.paddingX);
+            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -265,7 +304,57 @@ namespace FinkiManEscape
             //}
         }
 
-        
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            using (var soundPlayer = new SoundPlayer(Resources.button_16))
+            {
+                soundPlayer.Play(); 
+            }
+            btnStart.Visible = false;
+            btnExit.Visible = false;
+            kopce1.Visible = true;
+            kopce2.Visible = true;
+            mainWindow = false;
+            newGame();
+            
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void meniTujToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            main_menu();
+            
+        }
+
+        private void kopce1_Click(object sender, EventArgs e)
+        {
+
+            game = new Game(levels.OriginalCurrentLevel); 
+            movesPerLevel = 0;
+            timePerLevel = 0;
+            
+        }
+
+        private void kopce2_Click(object sender, EventArgs e)
+        {
+            main_menu();
+            kopce1.Visible = false;
+            kopce2.Visible = false;
+        }
+
+        private void maleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            levels.Male = true;
+        }
+
+        private void femaleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            levels.Male = false;
+        } 
 
     }
 }

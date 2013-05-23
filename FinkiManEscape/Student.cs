@@ -11,16 +11,13 @@ namespace FinkiManEscape
     class Student: Figura
     {
         Image image;
-        bool male;
-
-        public Student(int length, int positionX, int positionY, int orientation, bool male):base (length, positionX, positionY, orientation)
+        private bool male;
+        public bool Male { get { return male; } set { male = value; if (!male)this.image = Resources.girlwithbook; } }
+       
+        public Student(int length, int positionX, int positionY, int orientation):base (length, positionX, positionY, orientation)
         {
-            this.male = male;
-            if (this.male)
-            {
+            this.male = true;
                 this.image = Resources.boywithbook;
-            }
-            else this.image = Resources.girlwithbook;
         }
 
         public override void draw(Graphics g)
