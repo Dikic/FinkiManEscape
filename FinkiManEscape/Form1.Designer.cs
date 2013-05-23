@@ -35,14 +35,14 @@
             this.smallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.genderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.maleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.femaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopce2 = new FinkiManEscape.Kopce();
             this.kopce1 = new FinkiManEscape.Kopce();
             this.btnExit = new FinkiManEscape.Kopce();
             this.btnStart = new FinkiManEscape.Kopce();
-            this.genderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.maleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.femaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             // meniTujToolStripMenuItem
             // 
             this.meniTujToolStripMenuItem.Name = "meniTujToolStripMenuItem";
-            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.meniTujToolStripMenuItem.Text = "Main Menu";
             this.meniTujToolStripMenuItem.Click += new System.EventHandler(this.meniTujToolStripMenuItem_Click);
             // 
@@ -81,7 +81,7 @@
             this.mediumToolStripMenuItem,
             this.bigToolStripMenuItem});
             this.windowSizeToolStripMenuItem.Name = "windowSizeToolStripMenuItem";
-            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.windowSizeToolStripMenuItem.Text = "Window Size";
             // 
             // smallToolStripMenuItem
@@ -104,6 +104,29 @@
             this.bigToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.bigToolStripMenuItem.Text = "Big";
             this.bigToolStripMenuItem.Click += new System.EventHandler(this.bigToolStripMenuItem_Click);
+            // 
+            // genderToolStripMenuItem
+            // 
+            this.genderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maleToolStripMenuItem,
+            this.femaleToolStripMenuItem});
+            this.genderToolStripMenuItem.Name = "genderToolStripMenuItem";
+            this.genderToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.genderToolStripMenuItem.Text = "Gender";
+            // 
+            // maleToolStripMenuItem
+            // 
+            this.maleToolStripMenuItem.Name = "maleToolStripMenuItem";
+            this.maleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.maleToolStripMenuItem.Text = "Male";
+            this.maleToolStripMenuItem.Click += new System.EventHandler(this.maleToolStripMenuItem_Click);
+            // 
+            // femaleToolStripMenuItem
+            // 
+            this.femaleToolStripMenuItem.Name = "femaleToolStripMenuItem";
+            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.femaleToolStripMenuItem.Text = "Female";
+            this.femaleToolStripMenuItem.Click += new System.EventHandler(this.femaleToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -172,29 +195,6 @@
             this.btnStart.Text = "S t a r t";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // genderToolStripMenuItem
-            // 
-            this.genderToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.maleToolStripMenuItem,
-            this.femaleToolStripMenuItem});
-            this.genderToolStripMenuItem.Name = "genderToolStripMenuItem";
-            this.genderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.genderToolStripMenuItem.Text = "Gender";
-            // 
-            // maleToolStripMenuItem
-            // 
-            this.maleToolStripMenuItem.Name = "maleToolStripMenuItem";
-            this.maleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.maleToolStripMenuItem.Text = "Male";
-            this.maleToolStripMenuItem.Click += new System.EventHandler(this.maleToolStripMenuItem_Click);
-            // 
-            // femaleToolStripMenuItem
-            // 
-            this.femaleToolStripMenuItem.Name = "femaleToolStripMenuItem";
-            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.femaleToolStripMenuItem.Text = "Female";
-            this.femaleToolStripMenuItem.Click += new System.EventHandler(this.femaleToolStripMenuItem_Click);
             // 
             // Form1
             // 

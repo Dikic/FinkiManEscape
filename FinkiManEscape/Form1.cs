@@ -43,6 +43,7 @@ namespace FinkiManEscape
         public Form1()
         {
             InitializeComponent();
+            menuStrip1.Visible = false;
             //using (var db = new SaveLevelsContext())
             //{
             //    var query = (from b in db.Levels select b);
@@ -98,7 +99,7 @@ namespace FinkiManEscape
             movesPerLevel = 0;
             game = new Game(levels.getCurrentLevel());
             initializePoints();
-
+            menuStrip1.Visible = true;
             if (windowType == WindowTypeSize.small)
             {
                 Game.squareDimension = 30;
@@ -342,6 +343,7 @@ namespace FinkiManEscape
         private void kopce2_Click(object sender, EventArgs e)
         {
             main_menu();
+            menuStrip1.Visible = false;
             kopce1.Visible = false;
             kopce2.Visible = false;
         }
