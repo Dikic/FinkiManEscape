@@ -212,7 +212,22 @@ namespace FinkiManEscape
                    DialogResult d = MessageBox.Show("Level Finished", "Next Level?", MessageBoxButtons.YesNo);
                    if (d == DialogResult.Yes)
                    {
-                       
+                       if (levels.CurrentLevel == levels.Count-1)
+                       {
+                           int[] bt = new int[levels.Count];
+                           int[] bm = new int[levels.Count];
+                           for (int i = 0; i < levels.Count; i++)
+                           {
+                               bt[i] = levels[i].Time;
+                               bm[i] = levels[i].Moves;
+                           }
+                           levels = new Levels(levels.Male);
+                           for (int i = 0; i < levels.Count; i++)
+                           {
+                               levels[i].Time = bt[i];
+                               levels[i].Moves = bm[i];
+                           }
+                       }
                        levels.nextLevel();
                        newGame();
                        animationFinish.Stop();

@@ -55,6 +55,7 @@ namespace FinkiManEscape
                 }
             }
         }
+
         public Levels(bool male)
         {
             CurrentLevel = 0;
