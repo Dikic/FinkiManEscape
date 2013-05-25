@@ -39,8 +39,8 @@
             this.maleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.femaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kopce2 = new FinkiManEscape.Kopce();
-            this.kopce1 = new FinkiManEscape.Kopce();
+            this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnExit = new FinkiManEscape.Kopce();
             this.btnStart = new FinkiManEscape.Kopce();
             this.menuStrip1.SuspendLayout();
@@ -50,7 +50,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.pauseToolStripMenuItem,
+            this.helpToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(392, 24);
@@ -64,13 +66,13 @@
             this.windowSizeToolStripMenuItem,
             this.genderToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.gameToolStripMenuItem.Text = "Game";
             // 
             // meniTujToolStripMenuItem
             // 
             this.meniTujToolStripMenuItem.Name = "meniTujToolStripMenuItem";
-            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.meniTujToolStripMenuItem.Text = "Main Menu";
             this.meniTujToolStripMenuItem.Click += new System.EventHandler(this.meniTujToolStripMenuItem_Click);
             // 
@@ -81,27 +83,27 @@
             this.mediumToolStripMenuItem,
             this.bigToolStripMenuItem});
             this.windowSizeToolStripMenuItem.Name = "windowSizeToolStripMenuItem";
-            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.windowSizeToolStripMenuItem.Text = "Window Size";
             // 
             // smallToolStripMenuItem
             // 
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.smallToolStripMenuItem.Text = "Small";
             this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
             // 
             // mediumToolStripMenuItem
             // 
             this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.mediumToolStripMenuItem.Text = "Medium";
             this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
             // 
             // bigToolStripMenuItem
             // 
             this.bigToolStripMenuItem.Name = "bigToolStripMenuItem";
-            this.bigToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.bigToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.bigToolStripMenuItem.Text = "Big";
             this.bigToolStripMenuItem.Click += new System.EventHandler(this.bigToolStripMenuItem_Click);
             // 
@@ -111,60 +113,42 @@
             this.maleToolStripMenuItem,
             this.femaleToolStripMenuItem});
             this.genderToolStripMenuItem.Name = "genderToolStripMenuItem";
-            this.genderToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.genderToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.genderToolStripMenuItem.Text = "Gender";
             // 
             // maleToolStripMenuItem
             // 
             this.maleToolStripMenuItem.Name = "maleToolStripMenuItem";
-            this.maleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.maleToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.maleToolStripMenuItem.Text = "Male";
             this.maleToolStripMenuItem.Click += new System.EventHandler(this.maleToolStripMenuItem_Click);
             // 
             // femaleToolStripMenuItem
             // 
             this.femaleToolStripMenuItem.Name = "femaleToolStripMenuItem";
-            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.femaleToolStripMenuItem.Text = "Female";
             this.femaleToolStripMenuItem.Click += new System.EventHandler(this.femaleToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.helpToolStripMenuItem.Text = "Restart";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
-            // kopce2
+            // pauseToolStripMenuItem
             // 
-            this.kopce2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.kopce2.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kopce2.ForeColor = System.Drawing.Color.Gainsboro;
-            this.kopce2.GradientBottom = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.kopce2.GradientTop = System.Drawing.Color.DarkOrange;
-            this.kopce2.Location = new System.Drawing.Point(144, 397);
-            this.kopce2.Name = "kopce2";
-            this.kopce2.Size = new System.Drawing.Size(126, 57);
-            this.kopce2.TabIndex = 4;
-            this.kopce2.Text = "P a u s e";
-            this.kopce2.UseVisualStyleBackColor = true;
-            this.kopce2.Visible = false;
-            this.kopce2.Click += new System.EventHandler(this.kopce2_Click);
+            this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.pauseToolStripMenuItem.Text = "Pause";
+            this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
-            // kopce1
+            // helpToolStripMenuItem1
             // 
-            this.kopce1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.kopce1.Font = new System.Drawing.Font("Comic Sans MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.kopce1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.kopce1.GradientBottom = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.kopce1.GradientTop = System.Drawing.Color.DarkOrange;
-            this.kopce1.Location = new System.Drawing.Point(12, 397);
-            this.kopce1.Name = "kopce1";
-            this.kopce1.Size = new System.Drawing.Size(126, 57);
-            this.kopce1.TabIndex = 3;
-            this.kopce1.Text = "R e s e t";
-            this.kopce1.UseVisualStyleBackColor = true;
-            this.kopce1.Visible = false;
-            this.kopce1.Click += new System.EventHandler(this.kopce1_Click);
+            this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem1.Text = "Help";
             // 
             // btnExit
             // 
@@ -203,16 +187,16 @@
             this.BackgroundImage = global::FinkiManEscape.Properties.Resources.finkiman;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(392, 466);
-            this.Controls.Add(this.kopce2);
-            this.Controls.Add(this.kopce1);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FinkiMan Escape";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -236,11 +220,11 @@
         private System.Windows.Forms.ToolStripMenuItem bigToolStripMenuItem;
         private Kopce btnStart;
         private Kopce btnExit;
-        private Kopce kopce1;
-        private Kopce kopce2;
         private System.Windows.Forms.ToolStripMenuItem genderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem maleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem femaleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pauseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem1;
     }
 }
 

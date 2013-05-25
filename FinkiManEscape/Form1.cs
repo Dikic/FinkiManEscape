@@ -29,7 +29,8 @@ namespace FinkiManEscape
         int FontSize;
         int movesPerLevel;
         int timePerLevel;
-
+        int pauseTime, pauseMoves;
+        bool paused;
         
         public bool mainWindow { get; set; }
         public enum WindowTypeSize
@@ -68,10 +69,10 @@ namespace FinkiManEscape
             levelTimer.Tick += new EventHandler(levelTimer_Tick);
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
             FontSize = 14;
-
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             initializePoints();
-
-           
+            paused = false;
+            pauseMoves = pauseTime = 0;
             mainWindow = true;
             
         }
@@ -107,8 +108,6 @@ namespace FinkiManEscape
                 game.reSize();
                 this.Height = 285;
                 this.Width = 265;
-                kopce1.Location = new Point(12,Height-kopce1.Height-5);
-                
             }
             else if (windowType == WindowTypeSize.medium)
             {
@@ -117,7 +116,6 @@ namespace FinkiManEscape
                 game.reSize();
                 this.Height = 510;
                 this.Width = 505;
-                kopce1.Location = new Point(12, Height - kopce1.Height - 5);
             }
             else
             {
@@ -126,7 +124,6 @@ namespace FinkiManEscape
                 game.reSize();
                 this.Height = 800;
                 this.Width = 790;
-                kopce1.Top = Height-kopce1.Size.Height- 5;
             }
             Invalidate();
             levelTimer.Start();
@@ -173,6 +170,7 @@ namespace FinkiManEscape
             {
                 return;
             }
+            movesPerLevel++;
             dX = e.X;
             dY = e.Y;
             moving = true;
@@ -209,10 +207,14 @@ namespace FinkiManEscape
                    levels.getCurrentLevel().Finished = true;
                    levels.getCurrentLevel().Time = timePerLevel;
                    levels.getCurrentLevel().Moves = movesPerLevel;
-                   DialogResult d = MessageBox.Show("Level Finished", "Next Level?", MessageBoxButtons.YesNo);
+                   using (var soundPlayer = new SoundPlayer(Resources.applause))
+                   {
+                       soundPlayer.Play();
+                   }
+                   DialogResult d = MessageBox.Show("Continue to next level?", "Level finished", MessageBoxButtons.YesNo);
                    if (d == DialogResult.Yes)
                    {
-                       if (levels.CurrentLevel == levels.Count-1)
+                       if (levels.CurrentLevel == levels.Count - 1)
                        {
                            int[] bt = new int[levels.Count];
                            int[] bm = new int[levels.Count];
@@ -232,22 +234,40 @@ namespace FinkiManEscape
                        newGame();
                        animationFinish.Stop();
                    }
+                   else
+                   {
+                       if (levels.CurrentLevel == levels.Count - 1)
+                       {
+                           int[] bt = new int[levels.Count];
+                           int[] bm = new int[levels.Count];
+                           for (int i = 0; i < levels.Count; i++)
+                           {
+                               bt[i] = levels[i].Time;
+                               bm[i] = levels[i].Moves;
+                           }
+                           levels = new Levels(levels.Male);
+                           for (int i = 0; i < levels.Count; i++)
+                           {
+                               levels[i].Time = bt[i];
+                               levels[i].Moves = bm[i];
+                           }
+                       }
+                       animationFinish.Stop();
+                       levels.nextLevel();
+                       main_menu();
+                   }
                 }
                 else
                     game.finishMove();
                 moving = false;
-                movesPerLevel++;
+               
             }
             dX = dY = 0;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            if (mainWindow)
-            {
-
-            }
-            else
+            if (!mainWindow)
             {
 
                 e.Graphics.DrawImage(Resources.grid, new Rectangle(0, this.menuStrip1.Height, 6 * Game.squareDimension + 2 * Figura.paddingX, 6 * Game.squareDimension + menuStrip1.Height));
@@ -271,8 +291,6 @@ namespace FinkiManEscape
             windowType = WindowTypeSize.small;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
             FontSize = 4;
-            kopce1.Location = new Point(12, Height - kopce1.Height - 30 - Figura.paddingX);
-            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -287,9 +305,6 @@ namespace FinkiManEscape
             windowType = WindowTypeSize.medium;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2 * Game.squareDimension, Game.squareDimension);
             FontSize = 8;
-
-            kopce1.Location = new Point(12, Height - kopce1.Height - 30-Figura.paddingX);
-            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -304,8 +319,6 @@ namespace FinkiManEscape
             windowType = WindowTypeSize.big;
             timeRect = new Rectangle(6 * Game.squareDimension + 2 * Figura.paddingX, menuStrip1.Height, 2* Game.squareDimension, Game.squareDimension);
             FontSize = 14;
-            kopce1.Location = new Point(12, Height - kopce1.Height - 30 - Figura.paddingX);
-            kopce2.Location = new Point(12+kopce1.Width+10, Height - kopce1.Height - 30 - Figura.paddingX);
             Invalidate();
         }
 
@@ -328,11 +341,14 @@ namespace FinkiManEscape
             }
             btnStart.Visible = false;
             btnExit.Visible = false;
-            kopce1.Visible = true;
-            kopce2.Visible = true;
             mainWindow = false;
             newGame();
-            
+            if (paused)
+            {
+                timePerLevel = pauseTime;
+                movesPerLevel = pauseMoves;
+                paused = false;
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -346,23 +362,7 @@ namespace FinkiManEscape
             
         }
 
-        private void kopce1_Click(object sender, EventArgs e)
-        {
-
-            game = new Game(levels.OriginalCurrentLevel); 
-            movesPerLevel = 0;
-            timePerLevel = 0;
             
-        }
-
-        private void kopce2_Click(object sender, EventArgs e)
-        {
-            main_menu();
-            menuStrip1.Visible = false;
-            kopce1.Visible = false;
-            kopce2.Visible = false;
-        }
-
         private void maleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             levels.Male = true;
@@ -371,7 +371,36 @@ namespace FinkiManEscape
         private void femaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             levels.Male = false;
-        } 
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            using (var soundPlayer = new SoundPlayer(Resources.HeyThere))
+            {
+                soundPlayer.Play();
+            }
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            game = new Game(levels.OriginalCurrentLevel);
+            movesPerLevel = 0;
+            timePerLevel = 0;
+        }
+
+        private void pauseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            menuStrip1.Visible = false;
+            pauseTime = timePerLevel;
+            pauseMoves = movesPerLevel;
+            paused = true;
+            main_menu();
+        }
+
+       
+
+        
+
 
     }
 }
