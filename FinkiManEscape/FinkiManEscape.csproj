@@ -60,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks.cs" />
+    <Compile Include="Credits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Credits.Designer.cs">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Door.cs" />
     <Compile Include="Figura.cs" />
     <Compile Include="Form1.cs">
@@ -89,6 +95,9 @@
     </Compile>
     <Compile Include="SaveLevelsContext.cs" />
     <Compile Include="Student.cs" />
+    <EmbeddedResource Include="Credits.resx">
+      <DependentUpon>Credits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +162,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ikona.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credits.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

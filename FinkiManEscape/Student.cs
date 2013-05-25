@@ -17,7 +17,7 @@ namespace FinkiManEscape
         public Student(int length, int positionX, int positionY, int orientation):base (length, positionX, positionY, orientation)
         {
             this.male = true;
-                this.image = Resources.boywithbook;
+            this.image = Resources.boywithbook;
         }
 
         public override void draw(Graphics g)

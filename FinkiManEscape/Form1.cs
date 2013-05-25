@@ -341,6 +341,7 @@ namespace FinkiManEscape
             }
             btnStart.Visible = false;
             btnExit.Visible = false;
+            kopce1.Visible = false;
             mainWindow = false;
             newGame();
             if (paused)
@@ -401,6 +402,23 @@ namespace FinkiManEscape
         {
             helpMenu h = new helpMenu();
             h.Show();
+        }
+
+        private void kopce1_Click(object sender, EventArgs e)
+        {
+            using (var soundPlayer = new SoundPlayer(Resources.button_16))
+            {
+                soundPlayer.Play();
+            }
+            helpMenu h = new helpMenu();
+            h.Show();
+        }
+
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Credits c = new Credits();
+            c.Show();
+           
         }
 
 
