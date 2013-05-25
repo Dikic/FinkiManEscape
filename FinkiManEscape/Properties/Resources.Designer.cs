@@ -129,6 +129,16 @@ namespace FinkiManEscape.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap helpmenu {
+            get {
+                object obj = ResourceManager.GetObject("helpmenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream HeyThere {
@@ -140,9 +150,9 @@ namespace FinkiManEscape.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon iconlogo {
+        internal static System.Drawing.Icon ikona {
             get {
-                object obj = ResourceManager.GetObject("iconlogo", resourceCulture);
+                object obj = ResourceManager.GetObject("ikona", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -158,7 +168,7 @@ namespace FinkiManEscape.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2021 2031 2140.
+        ///   Looks up a localized string similar to 2121 3011 2020 2040 3151 2331 2520 2540 3400 2001.
         /// </summary>
         internal static string levels {
             get {

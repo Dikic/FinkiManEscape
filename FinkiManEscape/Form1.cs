@@ -57,13 +57,13 @@ namespace FinkiManEscape
             //    if (levels == null) levels = new Levels(true);
 
             //}
+            this.BackgroundImage = Resources.finkiman;
             levels = new Levels(true);
             windowType = WindowTypeSize.big;
             DoubleBuffered = true;
             animationFinish = new Timer();
             animationFinish.Interval = 5;
-            animationFinish.Tick += new EventHandler(animationFinish_Tick);
-
+            animationFinish.Tick += new EventHandler(animationFinish_Tick);          
             levelTimer = new Timer();
             levelTimer.Interval = 1000;
             levelTimer.Tick += new EventHandler(levelTimer_Tick);
@@ -397,9 +397,11 @@ namespace FinkiManEscape
             main_menu();
         }
 
-       
-
-        
+        private void helpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            helpMenu h = new helpMenu();
+            h.Show();
+        }
 
 
     }
