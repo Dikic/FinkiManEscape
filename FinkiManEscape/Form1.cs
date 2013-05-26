@@ -33,6 +33,9 @@ namespace FinkiManEscape
         bool paused;
         
         public bool mainWindow { get; set; }
+        /// <summary>
+        /// Golemina na ekran
+        /// </summary>
         public enum WindowTypeSize
         {
             small,
@@ -76,6 +79,10 @@ namespace FinkiManEscape
             mainWindow = true;
             
         }
+
+        /// <summary>
+        /// Metoda za povikuvanje na glavnoto meni
+        /// </summary>
         public void main_menu()
         {
             btnStart.Visible = true;
@@ -86,12 +93,18 @@ namespace FinkiManEscape
             Height = 500;
             Width = 400;
         }
+        /// <summary>
+        /// Timer za izminato vreme
+        /// </summary>
         void levelTimer_Tick(object sender, EventArgs e)
         {
             timePerLevel++;
             Invalidate();
         }
 
+        /// <summary>
+        /// Metoda za nova igra
+        /// </summary>
         public void newGame()
         {
             dX = dY = 0;
@@ -129,7 +142,9 @@ namespace FinkiManEscape
             levelTimer.Start();
         }
 
-        
+        /// <summary>
+        /// Inicijalizacija na tocki za iscrtuvanje na stranicnite zidovi
+        /// </summary>
         private void initializePoints()
         {
             door = new Door(6 * Game.squareDimension + Figura.paddingX * 2, Figura.paddingY + 2 * Game.squareDimension - Game.squareDimension / 2, Game.squareDimension, Game.squareDimension);
@@ -149,7 +164,9 @@ namespace FinkiManEscape
             points2[3] = new Point(0, 6 * Game.squareDimension + Figura.paddingY+10);
 
         }
-
+        /// <summary>
+        /// Tajmer za otvaranje na vrata
+        /// </summary>
         void animationFinish_Tick(object sender, EventArgs e)
         {
 

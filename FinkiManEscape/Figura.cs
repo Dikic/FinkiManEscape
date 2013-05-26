@@ -34,6 +34,13 @@ namespace FinkiManEscape
         public static readonly int paddingX = 10;
         public static readonly int paddingY = 35;
 
+        /// <summary>
+        /// Konstruktor za Figura
+        /// </summary>
+        /// <param name="length">Dolzina na figurata (vo kocki)</param>
+        /// <param name="positionX">X pozicija na figurata(vo odnos na kocki t.e. matricata 6x6)</param>
+        /// <param name="positionY">Y pozicija na figurata(vo odnos na kocki t.e. matricata 6x6)</param>
+        /// <param name="orientation">Horizontalna postava(Landscape) i Vertikalna(Portrait)</param>
         public Figura(int length, int positionX, int positionY, int orientation)
         {
             X = positionX * Game.squareDimension;
@@ -59,6 +66,12 @@ namespace FinkiManEscape
             Bounds = new int[2];
         }
 
+        /// <summary>
+        /// Metoda za pomestuvanje na figura
+        /// </summary>
+        /// <param name="X">dX rastojanie za koe treba da se pomesti</param>
+        /// <param name="Y">dY rastojanie za koe treba da se pomesti</param>
+        /// <returns>true za validno pomestuvanje, false za nevalidno</returns>
         public bool move(int X, int Y)
         {
             if (Orinetation == PORTRAIT)
@@ -81,7 +94,9 @@ namespace FinkiManEscape
             }
             return true;
         }
-
+        /// <summary>
+        /// Se povikuva pri smena goleminata na ekranot za da se inicijaliziraat novite vrednosti na figurite
+        /// </summary>
         public void resize()
         {
             X = PositionX * Game.squareDimension;
@@ -105,7 +120,7 @@ namespace FinkiManEscape
             Orinetation = Orinetation;
             Bounds = new int[2];
         }
-
+        
         abstract public void draw(Graphics g);
         abstract public bool endGame();
        

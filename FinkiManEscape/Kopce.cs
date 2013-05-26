@@ -8,6 +8,9 @@ using System.Drawing.Drawing2D;
 
 namespace FinkiManEscape
 {
+    /// <summary>
+    /// Klasata e izvadena od internet i adaptirana za nasi potrebi
+    /// </summary>
     class Kopce:Button
     {
         private Color gradientTop = Color.FromArgb(255, 44, 85, 177);

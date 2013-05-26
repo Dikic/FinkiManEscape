@@ -26,33 +26,35 @@ namespace FinkiManEscape
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
         }
-
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="level">Direkten Objekt od level</param>
         public Game(Level level)
         {
             this.level = level;
             initializeGrid();
             CurrentActive = EMPTYSQUARE;
         }
-
-        public Game()
-        {
-
-        }
+       /// <summary>
+       /// Inicijalizacija na matricata vo koja se naodjaat figurite
+       /// </summary>
         public void initializeGrid()
-        {
-            
-            //potpuni ga Grid prazni, puni kocke...
-            updateGrid();
-        }
-
-        public void updateGrid()
         {
             Grid = new int[6][];
             for (int i = 0; i < Grid.Length; i++)
             {
                 Grid[i] = new int[6];
             }
-            for (int i = 0; i < Grid.Length; i++)//inicijaliziraj na prazni
+            updateGrid();
+        }
+        /// <summary>
+        /// Metoda koja ja popolnuva matricata so figuri
+        /// </summary>
+        public void updateGrid()
+        {
+            
+            for (int i = 0; i < Grid.Length; i++)//inicijaliziraj na prazni kvadrati
             {
                 for (int j = 0; j < Grid[i].Length; j++)
                 {
@@ -62,7 +64,7 @@ namespace FinkiManEscape
 
             for (int j = 0; j < level.Length; j++)//projdi gi site level
             {
-                for (int i = 0; i < level[j].Length; i++)//za sekoja figura prejdi kolko prazni kocke ima za obelezuvanje
+                for (int i = 0; i < level[j].Length; i++)//za sekoja figura prejdi kolko prazni kvadrati ima za obelezuvanje
                 {
 
                     if (level[j].Orinetation == Figura.PORTRAIT)
@@ -98,7 +100,9 @@ namespace FinkiManEscape
             
 
         }
-
+        /// <summary>
+        /// Metoda so koja za kliknata figura gi odreduva granicite vo koi moze da se dvizi
+        /// </summary>
         private void updateBounds()
         {
             if (level[CurrentActive].Orinetation == Figura.LANDSCAPE)
@@ -151,7 +155,7 @@ namespace FinkiManEscape
             }
         }
         /// <summary>
-        /// Zavrsuvanje na move obavezno pri mouse up
+        /// Zavrsuvanje na move pri sto se presmetuvaat PositionX i PositionY vo odnos na kockite
         /// </summary>
         public void finishMove()
         {
@@ -159,7 +163,12 @@ namespace FinkiManEscape
             level[CurrentActive].PositionY /= squareDimension;
             updateGrid();
         }
-
+        /// <summary>
+        /// Metoda so koja se pomestuva kliknata figura
+        /// </summary>
+        /// <param name="X">dX za koe se pomestuva</param>
+        /// <param name="Y">dY za koe se pomestuva</param>
+        /// <returns></returns>
         public bool moveCurrent(int X, int Y)
         {
             if (CurrentActive != EMPTYSQUARE)
@@ -178,7 +187,10 @@ namespace FinkiManEscape
             }
 
         }
-
+        /// <summary>
+        /// Metoda koja ja postavuva figurata na svoe mesto
+        /// </summary>
+        /// <returns>true se dodeka se postavuva, false zavrseno postavuvanje</returns>
         public bool adjust()
         {
             if (level[CurrentActive].Orinetation == Figura.PORTRAIT)
@@ -201,12 +213,19 @@ namespace FinkiManEscape
         }
 
 
-
+        /// <summary>
+        /// Dali igrata e zavrsena
+        /// </summary>
+        /// <returns>true- zavrsena igra, false- ne e zavrsena</returns>
         public bool endGame()
         {
             return level[CurrentActive].endGame();
         }
 
+        /// <summary>
+        /// Go iscrtuva studentotnadvor od ucilnicata
+        /// </summary>
+        /// <returns>true-seuste se iscrtuva, false-zavrseno iscrtuvanje</returns>
         public bool drawFinish()
         {
             int t = 6 * Game.squareDimension + Figura.paddingY - level[CurrentActive].PositionX + Figura.paddingY;
@@ -218,6 +237,9 @@ namespace FinkiManEscape
             }
             return true;
         }
+        /// <summary>
+        /// Resize na site figuri dokolku se smeni goleminata na formata
+        /// </summary>
         public void reSize()
         {
             foreach (Figura f in level.figuri)
