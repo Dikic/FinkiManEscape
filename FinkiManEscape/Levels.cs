@@ -8,8 +8,11 @@ namespace FinkiManEscape
 {
     public class Levels
     {
-        public int LevelsId { get; set; }
+        public int LevelsId { get; set; }//Za Entitiy Framework
         public List<Level> Level;
+        /// <summary>
+        /// Properti za zimanje na originalot na segasniot level(za reset vo formata)
+        /// </summary>
         public Level OriginalCurrentLevel
         {
             get
@@ -55,8 +58,15 @@ namespace FinkiManEscape
                 }
             }
         }
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
         public Levels() : this(true) { }
-        
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="male">Polot na studentot</param>
         public Levels(bool male)
         {
             CurrentLevel = 0;
@@ -104,16 +114,23 @@ namespace FinkiManEscape
             }
         }
 
+        /// <summary>
+        /// Metoda za dodavanje na level
+        /// </summary>
+        /// <param name="level">objekt od klasata Level</param>
         public void add(Level level)
         {
             Level.Add(level);
         }
-
+        
+        /// <returns>Go vraka momentalniot level</returns>
         public Level getCurrentLevel()
         {
             return Level[CurrentLevel];
         }
-
+        /// <summary>
+        /// Odi na sledniot level
+        /// </summary>
         public void nextLevel()
         {
             CurrentLevel++;

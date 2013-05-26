@@ -30,7 +30,10 @@ namespace FinkiManEscape
         public bool Finished { get; set; }
 
         
-
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="figuri">pole od Figuri</param>
         public Level(Figura[] figuri)
         {
             Time = -1;
