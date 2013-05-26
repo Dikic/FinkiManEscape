@@ -6,9 +6,9 @@ using System.Data.Entity;
 
 namespace FinkiManEscape
 {
-    public class SaveLevelsContext:DbContext
+    class SaveGameContext:DbContext
     {
         public DbSet<Level> Level { set; get; }
-        public DbSet<Levels> Levels { get; set; }
+        public DbSet<Levels> Levels { set; get; }
     }
 }

@@ -15,8 +15,16 @@ namespace FinkiManEscape
         public int LevelNumber { get; set; }
         private int time;
         private int moves;
-        public int Time { get { return time; } set { if (value < time || time == -1)time = value; } }
-        public int Moves { get { return time; } set { if (value < moves || moves == -1) moves = value; } }
+        public int Time
+        {
+            get { return time; }
+            set { if (value < time || time == -1)time = value; }
+        }
+        public int Moves
+        {
+            get { return moves; }
+            set { if (value < moves || moves == -1) moves = value; }
+        }
         public int Length { get { return figuri.Length; } }
 
         public bool Finished { get; set; }
@@ -53,7 +61,7 @@ namespace FinkiManEscape
             {
                 return string.Format("Level {0} \nBest time --:-- \nBest moves --", LevelNumber + 1);
             }
-            return string.Format("Level {0} \nBest time {1:00}:{2} \nBest moves {3}", LevelNumber + 1, Time / 60, time % 60, moves);
+            return string.Format("Level {0} \nBest time {1:00}:{2} \nBest moves {3}", LevelNumber + 1, time / 60, time % 60, moves);
         }
     }
 }

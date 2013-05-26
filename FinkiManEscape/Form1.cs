@@ -45,18 +45,18 @@ namespace FinkiManEscape
         {
             InitializeComponent();
             menuStrip1.Visible = false;
-            //using (var db = new SaveLevelsContext())
-            //{
-            //    var query = (from b in db.Levels select b);
-            //    foreach (var item in query)
-            //    {
-            //        levels = item;
-            //        db.Levels.Remove(item);
-            //    }
-            //    db.SaveChanges();
-            //    if (levels == null) levels = new Levels(true);
 
-            //}
+            using (var data = new SaveGameContext())
+            {
+                    var query = (from b in data.Levels select b);
+                    foreach (var item in query)
+                    {
+                        levels = item;
+                        data.Levels.Remove(item);
+                    }
+                    data.SaveChanges();
+                    if (levels == null) levels = new Levels(true);
+            }
             this.BackgroundImage = Resources.finkiman;
             levels = new Levels(true);
             windowType = WindowTypeSize.big;
@@ -170,7 +170,7 @@ namespace FinkiManEscape
             {
                 return;
             }
-            movesPerLevel++;
+            
             dX = e.X;
             dY = e.Y;
             moving = true;
@@ -202,63 +202,67 @@ namespace FinkiManEscape
                 }
                 if (game.endGame())
                 {
-                   animationFinish.Start();
-                   levelTimer.Stop();
-                   levels.getCurrentLevel().Finished = true;
-                   levels.getCurrentLevel().Time = timePerLevel;
-                   levels.getCurrentLevel().Moves = movesPerLevel;
-                   using (var soundPlayer = new SoundPlayer(Resources.applause))
-                   {
-                       soundPlayer.Play();
-                   }
-                   DialogResult d = MessageBox.Show("Continue to next level?", "Level finished", MessageBoxButtons.YesNo);
-                   if (d == DialogResult.Yes)
-                   {
-                       if (levels.CurrentLevel == levels.Count - 1)
-                       {
-                           int[] bt = new int[levels.Count];
-                           int[] bm = new int[levels.Count];
-                           for (int i = 0; i < levels.Count; i++)
-                           {
-                               bt[i] = levels[i].Time;
-                               bm[i] = levels[i].Moves;
-                           }
-                           levels = new Levels(levels.Male);
-                           for (int i = 0; i < levels.Count; i++)
-                           {
-                               levels[i].Time = bt[i];
-                               levels[i].Moves = bm[i];
-                           }
-                       }
-                       levels.nextLevel();
-                       newGame();
-                       animationFinish.Stop();
-                   }
-                   else
-                   {
-                       if (levels.CurrentLevel == levels.Count - 1)
-                       {
-                           int[] bt = new int[levels.Count];
-                           int[] bm = new int[levels.Count];
-                           for (int i = 0; i < levels.Count; i++)
-                           {
-                               bt[i] = levels[i].Time;
-                               bm[i] = levels[i].Moves;
-                           }
-                           levels = new Levels(levels.Male);
-                           for (int i = 0; i < levels.Count; i++)
-                           {
-                               levels[i].Time = bt[i];
-                               levels[i].Moves = bm[i];
-                           }
-                       }
-                       animationFinish.Stop();
-                       levels.nextLevel();
-                       main_menu();
-                   }
+                    animationFinish.Start();
+                    levelTimer.Stop();
+                    levels.getCurrentLevel().Finished = true;
+                    levels.getCurrentLevel().Time = timePerLevel;
+                    levels.getCurrentLevel().Moves = movesPerLevel;
+                    using (var soundPlayer = new SoundPlayer(Resources.applause))
+                    {
+                        soundPlayer.Play();
+                    }
+                    DialogResult d = MessageBox.Show("Continue to next level?", "Level finished", MessageBoxButtons.YesNo);
+                    if (d == DialogResult.Yes)
+                    {
+                        if (levels.CurrentLevel == levels.Count - 1)
+                        {
+                            int[] bt = new int[levels.Count];
+                            int[] bm = new int[levels.Count];
+                            for (int i = 0; i < levels.Count; i++)
+                            {
+                                bt[i] = levels[i].Time;
+                                bm[i] = levels[i].Moves;
+                            }
+                            levels = new Levels(levels.Male);
+                            for (int i = 0; i < levels.Count; i++)
+                            {
+                                levels[i].Time = bt[i];
+                                levels[i].Moves = bm[i];
+                            }
+                        }
+                        levels.nextLevel();
+                        newGame();
+                        animationFinish.Stop();
+                    }
+                    else
+                    {
+                        if (levels.CurrentLevel == levels.Count - 1)
+                        {
+                            int[] bt = new int[levels.Count];
+                            int[] bm = new int[levels.Count];
+                            for (int i = 0; i < levels.Count; i++)
+                            {
+                                bt[i] = levels[i].Time;
+                                bm[i] = levels[i].Moves;
+                            }
+                            levels = new Levels(levels.Male);
+                            for (int i = 0; i < levels.Count; i++)
+                            {
+                                levels[i].Time = bt[i];
+                                levels[i].Moves = bm[i];
+                            }
+                        }
+                        animationFinish.Stop();
+                        levels.nextLevel();
+                        main_menu();
+                    }
                 }
                 else
+                {
                     game.finishMove();
+                    movesPerLevel++;
+                   
+                }
                 moving = false;
                
             }
@@ -324,13 +328,13 @@ namespace FinkiManEscape
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //using (var db = new SaveLevelsContext())
-            //{
-                
-            //    db.Levels.Add(levels);
-            //    db.SaveChanges();
+            using (var db = new SaveGameContext())
+            {
 
-            //}
+                db.Levels.Add(levels);
+                db.SaveChanges();
+
+            }
         }
 
         private void btnStart_Click(object sender, EventArgs e)
