@@ -54,7 +54,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "helpMenu";
             this.Text = "Help";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.helpMenu_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

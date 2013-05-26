@@ -21,14 +21,5 @@ namespace FinkiManEscape
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
-        private void helpMenu_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            using (var soundPlayer = new SoundPlayer(Resources.HeyThere))
-            {
-                soundPlayer.Play();
-            }
-        }
-
-
     }
 }
