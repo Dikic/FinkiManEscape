@@ -92,6 +92,11 @@ namespace FinkiManEscape
             mainWindow = true;
             Height = 500;
             Width = 400;
+            menuStrip1.Hide();
+            using (var soundPlayer = new SoundPlayer(Resources.HeyThere))
+            {
+                soundPlayer.Play();
+            }
         }
         /// <summary>
         /// Timer za izminato vreme
@@ -381,6 +386,7 @@ namespace FinkiManEscape
         private void meniTujToolStripMenuItem_Click(object sender, EventArgs e)
         {
             main_menu();
+            kopce1.Show();
             
         }
 
@@ -416,6 +422,7 @@ namespace FinkiManEscape
             pauseTime = timePerLevel;
             pauseMoves = movesPerLevel;
             paused = true;
+            kopce1.Show();
             main_menu();
         }
 

@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Media;
+using System.Resources;
+using FinkiManEscape.Properties;
 
 namespace FinkiManEscape
 {
@@ -17,5 +20,15 @@ namespace FinkiManEscape
             this.AutoScroll = true;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
+
+        private void helpMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            using (var soundPlayer = new SoundPlayer(Resources.HeyThere))
+            {
+                soundPlayer.Play();
+            }
+        }
+
+
     }
 }

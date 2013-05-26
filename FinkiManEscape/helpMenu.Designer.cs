@@ -39,7 +39,7 @@
             this.pictureBox1.Image = global::FinkiManEscape.Properties.Resources.helpmenu;
             this.pictureBox1.Location = new System.Drawing.Point(0, -2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(450, 1000);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 1000);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -54,6 +54,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "helpMenu";
             this.Text = "Help";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.helpMenu_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

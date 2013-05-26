@@ -42,10 +42,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kopce1 = new FinkiManEscape.Kopce();
             this.btnExit = new FinkiManEscape.Kopce();
             this.btnStart = new FinkiManEscape.Kopce();
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,13 +70,14 @@
             this.windowSizeToolStripMenuItem,
             this.genderToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.gameToolStripMenuItem.Text = "Game";
+           
             // 
             // meniTujToolStripMenuItem
             // 
             this.meniTujToolStripMenuItem.Name = "meniTujToolStripMenuItem";
-            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.meniTujToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.meniTujToolStripMenuItem.Text = "Main Menu";
             this.meniTujToolStripMenuItem.Click += new System.EventHandler(this.meniTujToolStripMenuItem_Click);
             // 
@@ -87,27 +88,27 @@
             this.mediumToolStripMenuItem,
             this.bigToolStripMenuItem});
             this.windowSizeToolStripMenuItem.Name = "windowSizeToolStripMenuItem";
-            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.windowSizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.windowSizeToolStripMenuItem.Text = "Window Size";
             // 
             // smallToolStripMenuItem
             // 
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.smallToolStripMenuItem.Text = "Small";
             this.smallToolStripMenuItem.Click += new System.EventHandler(this.smallToolStripMenuItem_Click);
             // 
             // mediumToolStripMenuItem
             // 
             this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.mediumToolStripMenuItem.Text = "Medium";
             this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
             // 
             // bigToolStripMenuItem
             // 
             this.bigToolStripMenuItem.Name = "bigToolStripMenuItem";
-            this.bigToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.bigToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.bigToolStripMenuItem.Text = "Big";
             this.bigToolStripMenuItem.Click += new System.EventHandler(this.bigToolStripMenuItem_Click);
             // 
@@ -117,20 +118,20 @@
             this.maleToolStripMenuItem,
             this.femaleToolStripMenuItem});
             this.genderToolStripMenuItem.Name = "genderToolStripMenuItem";
-            this.genderToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.genderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.genderToolStripMenuItem.Text = "Gender";
             // 
             // maleToolStripMenuItem
             // 
             this.maleToolStripMenuItem.Name = "maleToolStripMenuItem";
-            this.maleToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.maleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.maleToolStripMenuItem.Text = "Male";
             this.maleToolStripMenuItem.Click += new System.EventHandler(this.maleToolStripMenuItem_Click);
             // 
             // femaleToolStripMenuItem
             // 
             this.femaleToolStripMenuItem.Name = "femaleToolStripMenuItem";
-            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.femaleToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.femaleToolStripMenuItem.Text = "Female";
             this.femaleToolStripMenuItem.Click += new System.EventHandler(this.femaleToolStripMenuItem_Click);
             // 
@@ -145,16 +146,23 @@
             // 
             this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
             this.pauseToolStripMenuItem.ShortcutKeyDisplayString = "";
-            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.pauseToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.pauseToolStripMenuItem.Text = "Pause";
             this.pauseToolStripMenuItem.Click += new System.EventHandler(this.pauseToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem1
             // 
             this.helpToolStripMenuItem1.Name = "helpToolStripMenuItem1";
-            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem1.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem1.Text = "Help";
             this.helpToolStripMenuItem1.Click += new System.EventHandler(this.helpToolStripMenuItem1_Click);
+            // 
+            // creditsToolStripMenuItem
+            // 
+            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
+            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.creditsToolStripMenuItem.Text = "Credits";
+            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // kopce1
             // 
@@ -200,13 +208,6 @@
             this.btnStart.Text = "S t a r t";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.creditsToolStripMenuItem.Text = "Credits";
-            this.creditsToolStripMenuItem.Click += new System.EventHandler(this.creditsToolStripMenuItem_Click);
             // 
             // Form1
             // 
